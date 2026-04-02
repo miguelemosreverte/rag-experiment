@@ -56,7 +56,7 @@
         <thead>
           <tr class="border-b-2 border-wsj-text">
             <th class="py-2 px-4 w-40">Metric</th>
-            <th class="py-2 px-4 text-right"><a href="cosine.html" class="text-wsj-accent hover:underline">cosine</a></th><th class="py-2 px-4 text-right"><a href="tfidf_expansion.html" class="text-wsj-accent hover:underline">tfidf expansion</a></th>
+            <th class="py-2 px-4 text-right"><a href="cosine.html" class="text-wsj-accent hover:underline">cosine</a></th><th class="py-2 px-4 text-right"><a href="synthetic_cosine.html" class="text-wsj-accent hover:underline">synthetic cosine</a></th><th class="py-2 px-4 text-right"><a href="tfidf_expansion.html" class="text-wsj-accent hover:underline">tfidf expansion</a></th>
           </tr>
         </thead>
         <tbody>
@@ -69,6 +69,9 @@
       <td class="py-3 px-4 font-mono text-right font-bold text-wsj-green">
         100%
       </td>
+      <td class="py-3 px-4 font-mono text-right font-bold text-wsj-green">
+        100%
+      </td>
           </tr>
           <tr class="hover:bg-wsj-highlight">
             <td class="py-3 px-4 text-sm font-sans uppercase tracking-wider text-wsj-muted">Avg Query</td>
@@ -77,12 +80,18 @@
         5801ms
       </td>
       <td class="py-3 px-4 font-mono text-right ">
+        8131ms
+      </td>
+      <td class="py-3 px-4 font-mono text-right ">
         6790ms
       </td>
           </tr>
           <tr class="hover:bg-wsj-highlight">
             <td class="py-3 px-4 text-sm font-sans uppercase tracking-wider text-wsj-muted">Avg Expansion</td>
             
+      <td class="py-3 px-4 font-mono text-right font-bold text-wsj-green">
+        0ms
+      </td>
       <td class="py-3 px-4 font-mono text-right font-bold text-wsj-green">
         0ms
       </td>
@@ -96,6 +105,9 @@
       <td class="py-3 px-4 font-mono text-right ">
         71ms
       </td>
+      <td class="py-3 px-4 font-mono text-right ">
+        154ms
+      </td>
       <td class="py-3 px-4 font-mono text-right font-bold text-wsj-green">
         0ms
       </td>
@@ -105,6 +117,9 @@
             
       <td class="py-3 px-4 font-mono text-right ">
         2.0s
+      </td>
+      <td class="py-3 px-4 font-mono text-right ">
+        17.7s
       </td>
       <td class="py-3 px-4 font-mono text-right font-bold text-wsj-green">
         2.0s
@@ -116,21 +131,24 @@
       <td class="py-3 px-4 font-mono text-right ">
         5031MB
       </td>
+      <td class="py-3 px-4 font-mono text-right ">
+        4966MB
+      </td>
       <td class="py-3 px-4 font-mono text-right font-bold text-wsj-green">
         3013MB
       </td>
           </tr>
           <tr class="hover:bg-wsj-highlight">
             <td class="py-3 px-4 text-sm font-sans uppercase tracking-wider text-wsj-muted">Easy</td>
-            <td class="py-3 px-4 font-mono text-right">4/6</td><td class="py-3 px-4 font-mono text-right">6/6</td>
+            <td class="py-3 px-4 font-mono text-right">4/6</td><td class="py-3 px-4 font-mono text-right">6/6</td><td class="py-3 px-4 font-mono text-right">6/6</td>
           </tr>
           <tr class="hover:bg-wsj-highlight">
             <td class="py-3 px-4 text-sm font-sans uppercase tracking-wider text-wsj-muted">Medium</td>
-            <td class="py-3 px-4 font-mono text-right">2/2</td><td class="py-3 px-4 font-mono text-right">2/2</td>
+            <td class="py-3 px-4 font-mono text-right">2/2</td><td class="py-3 px-4 font-mono text-right">2/2</td><td class="py-3 px-4 font-mono text-right">2/2</td>
           </tr>
           <tr class="hover:bg-wsj-highlight">
             <td class="py-3 px-4 text-sm font-sans uppercase tracking-wider text-wsj-muted">Hard</td>
-            <td class="py-3 px-4 font-mono text-right">2/2</td><td class="py-3 px-4 font-mono text-right">2/2</td>
+            <td class="py-3 px-4 font-mono text-right">2/2</td><td class="py-3 px-4 font-mono text-right">2/2</td><td class="py-3 px-4 font-mono text-right">2/2</td>
           </tr>
         </tbody>
       </table>
@@ -148,8 +166,16 @@
             <span class="text-wsj-muted">5801ms/query</span>
           </div>
         </a>
-        <a href="tfidf_expansion.html" class="block bg-white border border-wsj-border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
+        <a href="synthetic_cosine.html" class="block bg-white border border-wsj-border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
           <div class="text-xs text-wsj-muted mb-1">Run 2</div>
+          <div class="font-bold text-lg mb-2">synthetic cosine</div>
+          <div class="flex justify-between text-sm">
+            <span>Accuracy: <strong class="text-wsj-green">100%</strong></span>
+            <span class="text-wsj-muted">8131ms/query</span>
+          </div>
+        </a>
+        <a href="tfidf_expansion.html" class="block bg-white border border-wsj-border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-xs text-wsj-muted mb-1">Run 3</div>
           <div class="font-bold text-lg mb-2">tfidf expansion</div>
           <div class="flex justify-between text-sm">
             <span>Accuracy: <strong class="text-wsj-green">100%</strong></span>

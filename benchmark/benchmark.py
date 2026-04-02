@@ -295,6 +295,14 @@ def run_benchmark(model_path: str) -> str:
                 qdef["query"], tokenizer, kv_gen, k=3
             )
             qm.route_ms = (time.monotonic() - t_route) * 1000
+        elif routing_method == "synthetic_cosine":
+            # Synthetic query cosine routing — no expansion needed
+            qm.expansion_ms = 0.0
+            t_route = time.monotonic()
+            window_ids = store.route_synthetic(
+                qdef["query"], tokenizer, kv_gen, k=3
+            )
+            qm.route_ms = (time.monotonic() - t_route) * 1000
         else:
             # TF-IDF + expansion routing
             expansion_ids = KnowledgeStore._expand_query(qdef["query"], tokenizer, kv_gen)
