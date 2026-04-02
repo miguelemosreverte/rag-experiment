@@ -281,6 +281,19 @@ def run_apollo_benchmark(model_path: str):
               file=sys.stderr)
         results.append(qr)
 
+        # Live update: write partial JSON + regenerate HTML after each query
+        partial_json = generate_json_report(sysinfo, model_load_s, results, store, mode)
+        label = f"apollo11_{mode}"
+        runs_dir = Path(__file__).parent / "runs"
+        runs_dir.mkdir(exist_ok=True)
+        (runs_dir / f"{label}.json").write_text(json.dumps(partial_json, indent=2) + "\n")
+        partial_md = generate_md_report(sysinfo, model_load_s, results, store, mode)
+        (runs_dir / f"{label}.md").write_text(partial_md)
+        # Regenerate HTML
+        import subprocess
+        subprocess.run(["node", str(Path(__file__).parent.parent / "docs" / "md2html.js")],
+                       capture_output=True, cwd=str(Path(__file__).parent.parent))
+
     # Generate reports
     report_md = generate_md_report(sysinfo, model_load_s, results, store, mode)
     report_json = generate_json_report(sysinfo, model_load_s, results, store, mode)
