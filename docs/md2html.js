@@ -23,6 +23,13 @@ const DOCS_DIR = path.join(__dirname);
 const runFiles = fs
   .readdirSync(RUNS_DIR)
   .filter((f) => f.endsWith(".json"))
+  .filter((f) => {
+    // Only include skill benchmark runs (have routing.queries)
+    try {
+      const d = JSON.parse(fs.readFileSync(path.join(RUNS_DIR, f), "utf-8"));
+      return d.routing && d.routing.queries;
+    } catch { return false; }
+  })
   .sort();
 
 const runs = runFiles.map((f) => {
