@@ -1,0 +1,21 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Model weights (too large for git)
+*.safetensors
+*.bin
+*.gguf
+gemma-*/
+
+# Cloned repos (submodules or re-cloneable)
+apollo-demo/
+chuk-lazarus/
+
+# Knowledge store (rebuild from source)
+apollo11_store/
+
+# OS
+.DS_Store

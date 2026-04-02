@@ -1,0 +1,5 @@
+{"ts": 1775121912.960717, "elapsed_s": 4.701, "event": "query_start", "prompt": "What did the astronauts say when they first landed on the moon?", "expansion_words": [".\"", "<end_of_turn>", "ankind", "another", "arm", "armstrong", "do", "for", "giant", "il", "leap", "man", "mankind", "ne", "neil"], "expansion_ms": 1233.0}
+{"ts": 1775121912.961851, "elapsed_s": 4.702, "event": "routed", "window_ids": [684, 76, 605], "route_ms": 1234.2}
+{"ts": 1775121919.893682, "elapsed_s": 11.634, "event": "prefill_done", "mode": "Markov reconstruction", "ctx_tokens": 1564, "prefill_ms": 8165.9}
+{"ts": 1775121933.969367, "elapsed_s": 25.71, "event": "generate_done", "tokens_generated": 300, "total_ms": 22241.1}
+{"ts": 1775121933.971282, "elapsed_s": 25.712, "event": "query_done", "output": "According to the transcript, the astronauts\u2019 first comment was: \u201cI\u2019m standing on the moon.\u201d"}
