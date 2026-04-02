@@ -1,0 +1,622 @@
+{
+  "meta": {
+    "platform": "macOS-26.3-arm64-arm-64bit",
+    "timestamp": "2026-04-02T09:05:24.970830",
+    "model": "gemma-3-4b-it",
+    "benchmark": "apollo11_unified"
+  },
+  "document": {
+    "tokens": 370778,
+    "windows": 725
+  },
+  "summary": {
+    "improved": {
+      "grounded": 6,
+      "total": 10,
+      "grounded_pct": 60.0,
+      "terms_found": 21,
+      "terms_expected": 38,
+      "terms_pct": 55.3,
+      "avg_query_ms": 19794.0
+    },
+    "vanilla": {
+      "grounded": 5,
+      "total": 10,
+      "grounded_pct": 50.0,
+      "terms_found": 19,
+      "terms_expected": 38,
+      "terms_pct": 50.0,
+      "avg_query_ms": 18046.0
+    },
+    "original": {
+      "grounded": 5,
+      "total": 10,
+      "grounded_pct": 50.0,
+      "terms_found": 17,
+      "terms_expected": 38,
+      "terms_pct": 44.7,
+      "avg_query_ms": 27579.0
+    }
+  },
+  "queries": [
+    {
+      "query": "Quote verbatim what Houston said to Columbia when Eagle landed at Tranquility Base.",
+      "category": "verbatim",
+      "verify_terms": [
+        "Tranquility",
+        "Eagle",
+        "landed"
+      ],
+      "expected_verbatim": "05 03 10 32\n\nTape 79/10\nPage 450\nCDR\n(TRANQ)\n\nAnd, Houston, TranqUility\nBase is going to give\nyou a few comments with regard to the geology\nquestion of last night.\nWe are landed in a\nrelatively smooth crater field of elongate\nsecondary - circular secondary craters, most of",
+      "results": {
+        "improved": {
+          "output": "Here\u2019s the verbatim quote from Houston to Columbia when Eagle landed at Tranquility Base, as it appears in the provided transcript:\n\n\u201c**Columbia, this is Houston. Update? Over.**\u201d",
+          "total_ms": 21269.0,
+          "windows": [
+            389,
+            487,
+            532
+          ],
+          "terms_found": [
+            "Tranquility",
+            "Eagle",
+            "landed"
+          ],
+          "terms_missing": [],
+          "grounded": true
+        },
+        "vanilla": {
+          "output": "Here\u2019s the verbatim quote from Houston to Columbia when Eagle landed at Tranquility Base, as found in the provided transcript:\n\n\u201cWe\u2019re reading 67/6, 332 about it going?\u201d",
+          "total_ms": 16993.0,
+          "windows": [
+            389
+          ],
+          "terms_found": [
+            "Tranquility",
+            "Eagle",
+            "landed"
+          ],
+          "terms_missing": [],
+          "grounded": true
+        },
+        "original": {
+          "output": "Here\u2019s the verbatim quote from Houston to Columbia when Eagle landed at Tranquility Base, as extracted from the provided transcript:\n\n\u201cOkay. We've completed the uplink; the computer is yours. You can go BLOCK; however, we'd like you to hold off on the P52 option 1 align until after you've passed landing site 2; and we're requesting that you perform another P22 and attempt to find the I24 this pass. I've got some numbers for you when you're ready to copy. Over.\u201d",
+          "total_ms": 31244.0,
+          "terms_found": [
+            "Tranquility",
+            "Eagle",
+            "landed"
+          ],
+          "terms_missing": [],
+          "grounded": true
+        }
+      }
+    },
+    {
+      "query": "What did the astronauts describe about the color of the lunar surface? Quote their exact words.",
+      "category": "verbatim",
+      "verify_terms": [
+        "gray",
+        "chalky",
+        "basalt",
+        "Sun angle"
+      ],
+      "expected_verbatim": "04 07 12 44\n\nCDR\n(TRANQ)\n\nI'd say the color of the - The local surface is\nvery comparable to that we observed from orbit\nat this Sun angle, about l0 degrees Sun angle,\nor that nature.\nIt's pretty much without color.\nIt's gray, and it's a very white, chalky gray,\nas you look into the zero-phase line; smd it's\nconsiderably\ndarker gray, more like a ash ashen gray as you look out 90 degrees to thc S_m.",
+      "results": {
+        "improved": {
+          "output": "Here\u2019s the exact quote from the astronaut describing the color of the lunar surface:\n\n\u201cAs I look around the area, the contrast, in general, is *** comes about completely by virtue of the shadow *** down Sun ... very light-colored gray, light gray color, a halo around my own shadow, around the shadow of my helmet. Then, as I look off across *** the contrast becomes strongest in that the surromlding color is still fairly light. As you look down into the Sun *** a larger amount of *** shadowed area is looking toward us. The general color of the *** surrounding *** the contrast is not as great.\u201d\n\nOther relevant quotes from the transcript:\n\n*   \u201cSurveying all the dusty area that we\u2019ve kicked up *** considerably darker in texture.\u201d\n*   \u201cNow, I\u2019ve kicked up one, _ld I imagine that this is *** Sur",
+          "total_ms": 20037.0,
+          "windows": [
+            76,
+            466,
+            263
+          ],
+          "terms_found": [
+            "gray"
+          ],
+          "terms_missing": [
+            "chalky",
+            "basalt",
+            "Sun angle"
+          ],
+          "grounded": false
+        },
+        "vanilla": {
+          "output": "Here\u2019s a quote of the astronaut\u2019s description of the lunar surface color, based on the provided text:\n\n\u201cvery light-colored gray, light gray color, a halo around my own shadow, around the shadow of my helmet. Then, as I look off across *** the contrast becomes strongest in that the surromlding color is still fairly light. As you look down into the Sun *** a larger amount of *** shadowed area is looking toward us. The general color of the *** surrounding *** the contrast is not as great. Surveying all the dusty area that we\u2019ve kicked up *** considerably darker in texture.\u201d\n\n**Note:** The asterisks (*) indicate missing words, so the quote isn't entirely complete.",
+          "total_ms": 19538.0,
+          "windows": [
+            466
+          ],
+          "terms_found": [
+            "gray"
+          ],
+          "terms_missing": [
+            "chalky",
+            "basalt",
+            "Sun angle"
+          ],
+          "grounded": false
+        },
+        "original": {
+          "output": "Here\u2019s the astronaut\u2019s description of the lunar surface color, directly quoted from the text:\n\n\u201cAs I look around the area, the contrast, in general, is *** comes about completely by virtue of the shadow *** down Sun ... very light-colored gray, light gray color, a halo around my own shadow, around the shadow of my helmet. Then, as I look off across *** the contrast becomes strongest in that the surrounding color is still fairly light. As you look down into the Sun *** a larger amount of *** shadowed area is looking toward us. The general color of the *** surrounding *** the contrast is not as great.\u201d\n\nEssentially, they described a range of grays, with a halo effect from their shadows and a stronger contrast when looking towards the sun.",
+          "total_ms": 27360.0,
+          "terms_found": [
+            "gray"
+          ],
+          "terms_missing": [
+            "chalky",
+            "basalt",
+            "Sun angle"
+          ],
+          "grounded": false
+        }
+      }
+    },
+    {
+      "query": "Quote verbatim the last goodnight message from Houston to the crew.",
+      "category": "verbatim",
+      "verify_terms": [
+        "good night",
+        "put you to bed",
+        "crew status"
+      ],
+      "expected_verbatim": "CMP\n\nRoger.\n\n07 13 57 42\n\nCC\n\nHello, Apollo 11. Houston.\nWe're read M to put\nyou to bed and say good night, if you give us\nyour crew status report and verify that you\n\nInfinity.",
+      "results": {
+        "improved": {
+          "output": "\u201cGood evening. I\u2019d like to discuss with you a few of the more symbolic aspects of the flight of our mission, Apollo 11. As we\u2019ve been discussing the events that have taken place in the past 2 or 3 days here on board our spacecraft, we\u2019ve come to the conclusion that this has been far more than three men on a voyage to the Moon; more, still, than the efforts of a government and industry team; more, even, than the efforts of one nation. We feel that this stands as a symbol of the insatiable curiosity of all mankind to explore the unknown. Nell\u2019s statement the other day upon first setting foot on the Moon states \u2018in the cause of peace.\u2019 And Mrs. Robert Goddard said today that her husband would have been so happy. \u201cHe wouldn\u2019t have shouted or anything. He would just have glowed.\u201d She added, \u201cTh",
+          "total_ms": 19809.0,
+          "windows": [
+            678,
+            686,
+            589
+          ],
+          "terms_found": [],
+          "terms_missing": [
+            "good night",
+            "put you to bed",
+            "crew status"
+          ],
+          "grounded": false
+        },
+        "vanilla": {
+          "output": "\u201cThere\u2019s more moisture in the tunnel now than there has been at any previous time. Subjectively we have been unable to determine any change in humidity buildup in the tunnel. There appears to be no moisture anywhere else in the spacecraft. For example, the windows are not fogging or \u2013 and various other cool spots around the spacecraft \u2013 all of them appear to be completely dry.\u201d",
+          "total_ms": 19186.0,
+          "windows": [
+            678
+          ],
+          "terms_found": [],
+          "terms_missing": [
+            "good night",
+            "put you to bed",
+            "crew status"
+          ],
+          "grounded": false
+        },
+        "original": {
+          "output": "Here\u2019s the verbatim last goodnight message from Houston to the crew, as extracted from the provided text:\n\n\u201c01 06 28 0\u201d\n\n\u201cThere\u2019s more moisture in the tunnel now than there has been at Im3\u2019 previous time. Subjectively we have been unable to determine any change in - Im3\u2019 buildup in humidity. There appears to be no moisture anywhere else in the spacecraft. For example, the windows are not fogging or \u2013 and various other cool spots around the spacecraft \u2013 all of them appear to be completely dry.\u201d",
+          "total_ms": 27302.0,
+          "terms_found": [],
+          "terms_missing": [
+            "good night",
+            "put you to bed",
+            "crew status"
+          ],
+          "grounded": false
+        }
+      }
+    },
+    {
+      "query": "What did the crew say about the chinch bugs? Quote the exact words.",
+      "category": "verbatim",
+      "verify_terms": [
+        "chinch bugs",
+        "mower",
+        "taciturn"
+      ],
+      "expected_verbatim": "job, but I'll look into that for you.\n07 05 39 51\n\n_\n\nWell,\n\nhe'll\n\ntell you.\n\nHe's got a new mower.\n\n07 05 39 53",
+      "results": {
+        "improved": {
+          "output": "Here\u2019s the exact quote from the transcript about the chinch bugs:\n\n\u201cWell, they\u2019re sort of taciturn little fellows. They don\u2019t say much; they just chomp away.\u201d",
+          "total_ms": 20254.0,
+          "windows": [
+            673,
+            682,
+            76
+          ],
+          "terms_found": [
+            "chinch bugs",
+            "taciturn"
+          ],
+          "terms_missing": [
+            "mower"
+          ],
+          "grounded": true
+        },
+        "vanilla": {
+          "output": "Here\u2019s the requested quote from the transcript:\n\n\u201cWell, they\u2019re sort of taciturn little fellows. They don\u2019t say much; they just chomp away.\u201d",
+          "total_ms": 18178.0,
+          "windows": [
+            673
+          ],
+          "terms_found": [
+            "taciturn"
+          ],
+          "terms_missing": [
+            "chinch bugs",
+            "mower"
+          ],
+          "grounded": false
+        },
+        "original": {
+          "output": "Here\u2019s the exact quote from the transcript about the chinch bugs:\n\n\u201cWell, they\u2019re sort of taciturn little fellows. They don\u2019t say much; they just chomp away.\u201d",
+          "total_ms": 28233.0,
+          "terms_found": [
+            "chinch bugs",
+            "taciturn"
+          ],
+          "terms_missing": [
+            "mower"
+          ],
+          "grounded": true
+        }
+      }
+    },
+    {
+      "query": "What was the astronauts' impression of the lunar soil from the core tube samples? Quote their exact words.",
+      "category": "verbatim",
+      "verify_terms": [
+        "core tube",
+        "moist",
+        "packed"
+      ],
+      "expected_verbatim": "LMP\n(TRANQ)\n\nYes.\nThat's about it.\nIt wasn't a rapid change\nin resistive force.\nAnd also I noticed when I\ntook the bit off that the material was quite\nwell packed, a good bit darker, and it - The way\nit adhered to the core tube gave me the distinct\nimpression of being moist.\nOver.",
+      "results": {
+        "improved": {
+          "output": "Okay, let\u2019s extract the relevant information from the provided transcript regarding the astronauts\u2019 impression of the lunar soil from the core tube samples.\n\nHere\u2019s the quote from CDR Neil Armstrong:\n\n\u201cWell, I could do it like this, Owen. About all the struts are about equally stroked, and the height from the ground to the first step is about 3 feet or maybe 3 and 1/2 feet, huh?\u201d\n\n**Important Note:** This quote doesn't directly address the *soil* itself. It\u2019s about the mechanical operation of a device (likely a sampling tool).\n\n**However, the context of the conversation, particularly the subsequent discussion about the boxes being packed with samples, strongly suggests that the core tubes themselves contained the soil samples.**\n\nThe transcript also mentions:\n\n*   \u201cJust a couple more here,",
+          "total_ms": 19692.0,
+          "windows": [
+            508,
+            638,
+            478
+          ],
+          "terms_found": [
+            "core tube",
+            "packed"
+          ],
+          "terms_missing": [
+            "moist"
+          ],
+          "grounded": true
+        },
+        "vanilla": {
+          "output": "Here\u2019s the astronaut\u2019s impression of the lunar soil from the core tube samples, based on the provided text:\n\n\u201cThe material was quite well packed, a good bit darker, and it - The way it adhered to the core tube gave me the distinct impression of being moist.\u201d",
+          "total_ms": 18135.0,
+          "windows": [
+            508
+          ],
+          "terms_found": [
+            "core tube",
+            "moist",
+            "packed"
+          ],
+          "terms_missing": [],
+          "grounded": true
+        },
+        "original": {
+          "output": "Okay, let\u2019s break down the provided transcript and answer your question about the astronauts\u2019 impression of the lunar soil.\n\n**The Relevant Quote:**\n\nThe key quote is from CDR Neil Armstrong: \u201cThey're all looking wet. Houston, were you able to record the documentary way where the two core tube samples were taken? Negative. I didn't get a stereopair are right in the vicinity. Neil.\u201d\n\n**Astronauts\u2019 Impression of the Lunar Soil:**\n\nBased on this exchange, the astronauts\u2019 immediate impression was that the lunar soil around the core tube samples was **wet**.  Armstrong specifically states, \u201cThey're all looking wet.\u201d\n\n**Additional Context from the Transcript:**\n\n*   CC (Columbia Control) notes, \u201cLooks wet.\u201d\n*   CDR (Commander) confirms, \u201cHouston, were you able to record the documentary way where",
+          "total_ms": 26707.0,
+          "terms_found": [
+            "core tube"
+          ],
+          "terms_missing": [
+            "moist",
+            "packed"
+          ],
+          "grounded": false
+        }
+      }
+    },
+    {
+      "query": "What news stories from Earth were read to the astronauts? Quote the stories about Mrs. Goddard and the London bookie.",
+      "category": "factual",
+      "verify_terms": [
+        "crime-free",
+        "Goddard",
+        "London",
+        "bookie"
+      ],
+      "expected_verbatim": "have shouted or anything.\nHe would just have\nglowed.\"\nShe added, \"That was his dream, sending a rocket to the Moon.\"\nPeople around the\nworld had many reasons to be happy about the\nApollo ll mission.\nThe Italian police reported\nthat Sunday night was the most crime-free night\nof the year.\nAnd in London, a boy who had the\nfaith to bet $5 with a bookie that a man would\nreach the Moon before 1970 collected $2h 000.\nThat's pretty good odds.",
+      "results": {
+        "improved": {
+          "output": "Here\u2019s a breakdown of the news stories read to the astronauts, based on the provided text:\n\n*   **Mrs. Robert Goddard:** \u201cMrs. Robert Goddard said today that her husband would have been so happy. \u2018He wouldn\u2019t have shouted or anything. He would just have glowed.\u2019 She added, \u2018That was his dream, sending a rocket to the Moon.\u2019\u201d\n\n*   **London Bookie:** \u201cThe Italian police reported that Sunday night was the most crime-free night of the year. And in London, a boy who had the faith to bet $5 with a bookie that a man would reach the Moon before 1970 collected $2000. That\u2019s pretty good odds.\u201d",
+          "total_ms": 19351.0,
+          "windows": [
+            589,
+            76,
+            462
+          ],
+          "terms_found": [
+            "crime-free",
+            "Goddard",
+            "London",
+            "bookie"
+          ],
+          "terms_missing": [],
+          "grounded": true
+        },
+        "vanilla": {
+          "output": "Here are the news stories about Earth read to the astronauts, with the quoted sections:\n\n*   **Mrs. Robert Goddard:** \u201cShe wouldn't have shouted or anything. She would just have glowed.\u201d and \u201cThat was his dream, sending a rocket to the Moon.\u201d\n\n*   **The London Bookie:** \u201cAnd in London, a boy who had the faith to bet $5 with a bookie that a man would reach the Moon before 1970 collected $2h 000. That's pretty good odds.\u201d",
+          "total_ms": 18127.0,
+          "windows": [
+            589
+          ],
+          "terms_found": [
+            "Goddard",
+            "London",
+            "bookie"
+          ],
+          "terms_missing": [
+            "crime-free"
+          ],
+          "grounded": true
+        },
+        "original": {
+          "output": "Here are the news stories about Mrs. Robert Goddard and the London bookie as read to the astronauts:\n\n*   **Mrs. Robert Goddard:** \u201cStates in the cause of peace.\u201d And Mrs. Robert Goddard said today that her husband would have been so happy. \u201cHe wouldn't have shouted or anything. He would just have glowed.\u201d She added, \u201cThat was his dream, sending a rocket to the Moon.\u201d\n\n*   **London Bookie:** \u201cAnd in London, a boy who had the faith to bet $5 with a bookie that a man would reach the Moon before 1970 collected $2000. That\u2019s pretty good odds.\u201d",
+          "total_ms": 26785.0,
+          "terms_found": [
+            "Goddard",
+            "London",
+            "bookie"
+          ],
+          "terms_missing": [
+            "crime-free"
+          ],
+          "grounded": true
+        }
+      }
+    },
+    {
+      "query": "What technical problems did the crew report about equipment that unfolded unevenly on the lunar surface?",
+      "category": "factual",
+      "verify_terms": [
+        "unfolded",
+        "unevenly",
+        "terrain",
+        "indentation"
+      ],
+      "expected_verbatim": ".\n0}4 18 40 19\n\nLMP\n(TRANQ)\n\nI think that two corners did touch, since when it\nwas deployed, both of them didn't come out at the\nsame time.\nIt unfolded a little unevenly, and of\ncourse, the terrain that it was on was a little\nbit - not quite as level as it was - as I would\nlike to have it.",
+      "results": {
+        "improved": {
+          "output": "According to the transcript, the crew reported the following technical problems with the equipment:\n\n*   **Uneven unfolding:** The equipment unfolded unevenly.\n*   **Uneven terrain:** The terrain was not as level as desired.\n*   **Touching corners:** Two corners touched the lunar surface to a depth of about three-quarters to a half an inch.\n*   **Triangular coating:** A small triangular coating was left on two of the corners, likely due to the corners digging into the surface.\n*   **Difficulty penetrating:** The second core tube was extremely difficult to drive in, requiring significant force (two hands on the hammer) and resulting in dents in the extension rod. It didn't penetrate straight and kept digging a hole instead of standing up straight.",
+          "total_ms": 15046.0,
+          "windows": [
+            507
+          ],
+          "terms_found": [
+            "unfolded",
+            "unevenly",
+            "terrain"
+          ],
+          "terms_missing": [
+            "indentation"
+          ],
+          "grounded": true
+        },
+        "vanilla": {
+          "output": "According to the transcript, the crew reported the following technical problems with the equipment:\n\n*   **Uneven unfolding:** The equipment unfolded unevenly.\n*   **Uneven terrain:** The terrain was not as level as desired.\n*   **Touching corners:** Two corners touched the lunar surface to a depth of about three-quarters to a half an inch.\n*   **Triangular coating:** A small triangular coating was left on two of the corners, likely due to the corners digging into the surface.\n*   **Difficulty penetrating:** The second core tube was extremely difficult to drive in, requiring significant force (two hands on the hammer) and resulting in dents in the extension rod. It didn't penetrate straight and kept digging a hole instead of standing up straight.",
+          "total_ms": 19349.0,
+          "windows": [
+            507
+          ],
+          "terms_found": [
+            "unfolded",
+            "unevenly",
+            "terrain"
+          ],
+          "terms_missing": [
+            "indentation"
+          ],
+          "grounded": true
+        },
+        "original": {
+          "output": "According to the transcript, the crew reported the following technical problems with the touch-down gear:\n\n*   **Uneven Unfolding:** The touch-down gear unfolded unevenly.\n*   **Corner Contact:** Two corners touched the lunar surface about three-quarters to a half an inch deep.\n*   **Triangular Coating:** A small triangular coating of material (approximately 3 inches) was left on two of the corners.\n*   **Difficulty Penetrating:** The gear had difficulty penetrating the lunar surface and would dig a hole but not fully penetrate, making it unstable and prone to falling over.",
+          "total_ms": 26403.0,
+          "terms_found": [
+            "unfolded",
+            "unevenly"
+          ],
+          "terms_missing": [
+            "terrain",
+            "indentation"
+          ],
+          "grounded": true
+        }
+      }
+    },
+    {
+      "query": "Quote the astronauts' farewell message where they said God bless you and good night from Apollo 11.",
+      "category": "verbatim",
+      "verify_terms": [
+        "Saturn",
+        "Columbia",
+        "Eagle",
+        "God bless"
+      ],
+      "expected_verbatim": "The responsibility\nfor this flight lies first\nwith history and with the giants of science who\nhave preceded this effort; next with the American\npeople, who have thr<,ugh their will, indicated\ntheir desire; next, _ o four administrations,\nand\ntheir Congresses,\nfol' implementing that will;\nand then, to the agel_cy and industry teams that\nbuilt our spacecraft_ the Saturn, the Columbia,\nthe Eagle, and the 1 ttle EMU, the space suit\nand backpack that wa._,our small spacecraft out\non the lunar surfacer",
+      "results": {
+        "improved": {
+          "output": "Here\u2019s the quote from the astronauts\u2019 farewell message:\n\n\u201cPeople, tonight, we give a special thank you, and to all the other people that are listening and watching tonight, God bless you. Good night from Apollo 11.\u201d",
+          "total_ms": 20691.0,
+          "windows": [
+            688,
+            462,
+            690
+          ],
+          "terms_found": [
+            "God bless"
+          ],
+          "terms_missing": [
+            "Saturn",
+            "Columbia",
+            "Eagle"
+          ],
+          "grounded": false
+        },
+        "vanilla": {
+          "output": "\u201cPeople, tonight, we give a special thank you, and to all the other people that are listening and watching tonight, God bless you. Good night from Apollo 11.\u201d",
+          "total_ms": 17263.0,
+          "windows": [
+            688
+          ],
+          "terms_found": [
+            "God bless"
+          ],
+          "terms_missing": [
+            "Saturn",
+            "Columbia",
+            "Eagle"
+          ],
+          "grounded": false
+        },
+        "original": {
+          "output": "Okay, here's a breakdown of the transcript, organized for clarity and highlighting key information:\n\n**Tape 114/5 \u2013 Initial Communications & Stowage**\n\n*   **07 09 43 52 - 07 09 47 48:**  Initial greetings and a request from Apollo 11 to crank up the PTC (Panoramic Telescope Capability) for a TV broadcast.\n*   **07 09 47 57 - 07 09 48 10:**  Houston confirms the PTC can be cranked up.  A comment about the \"mighty fine TV presentation.\"\n*   **07 09 48 10 - 07 09 53 27:**  A simple \u201cThank you.\u201d\n*   **07 09 53 27 - 07 09 53 33:** Houston announces they are \u201cgetting off the window now.\u201d\n*   **07 09 53 36 - 07 09 56 53:** Houston requests a flight plan update and entry photography information.  Recommendations are given for exposure settings (f/1 at 1/250, 6 frames per second, focus at 7 feet f",
+          "total_ms": 26366.0,
+          "terms_found": [],
+          "terms_missing": [
+            "Saturn",
+            "Columbia",
+            "Eagle",
+            "God bless"
+          ],
+          "grounded": false
+        }
+      }
+    },
+    {
+      "query": "What happened with the television camera on the lunar surface? Quote what Houston said about seeing the Eagle and Earth.",
+      "category": "factual",
+      "verify_terms": [
+        "TV",
+        "camera",
+        "focus",
+        "Earth",
+        "eagle"
+      ],
+      "expected_verbatim": "01 10 29 23\n\nCC\n\nApollo 11, Houston.\nThe color is better now.\nIt's coming in. We could attempt a little bit\nbetter focus on it.\nThere we go; it focuses a\nlot better now.\nWe see the eagle coming right\nin on the lunar surface.\nOver.",
+      "results": {
+        "improved": {
+          "output": "Here\u2019s a breakdown of what happened with the television camera on the lunar surface, as relayed in the provided transcript:\n\n**The Setup:**\n\n*   Apollo 11 was using a camera to zoom in on the lunar surface, aiming for the highest possible magnification.\n*   Houston was monitoring the feed and describing what they were seeing.\n\n**What They Saw:**\n\n*   **Earth:** The camera showed a view of Earth, appearing as a \u201clittle more than a half Earth\u201d to the left of the LM (Lunar Module).\n*   **North America:** They could see North America, including Alaska, the United States, Canada, Mexico, and Central America, on the northern half of the top of the screen.\n*   **Bright Spot:** Buzz Aldrin (one of the astronauts) observed a \u201cvery bright spot of light\u201d on the surface.  Charlie Duke (the CAPCOM \u2013 th",
+          "total_ms": 21922.0,
+          "windows": [
+            128,
+            76,
+            627
+          ],
+          "terms_found": [
+            "camera",
+            "Earth"
+          ],
+          "terms_missing": [
+            "TV",
+            "focus",
+            "eagle"
+          ],
+          "grounded": false
+        },
+        "vanilla": {
+          "output": "Here\u2019s the relevant quote from the transcript:\n\n\u201cThe definition is pretty good on our monitor here. The color is not too ..., at least on this set. Could you describe what you\u2019re looking at? Over.\u201d\n\nHouston then asks for a description of what Charlie is seeing.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+          "total_ms": 16387.0,
+          "windows": [
+            128
+          ],
+          "terms_found": [],
+          "terms_missing": [
+            "TV",
+            "camera",
+            "focus",
+            "Earth",
+            "eagle"
+          ],
+          "grounded": false
+        },
+        "original": {
+          "output": "Here\u2019s a breakdown of what happened with the television camera on the lunar surface, as relayed in the provided transcript:\n\n**The Setup:**\n\n*   Apollo 11 was using a camera to zoom in on the lunar surface, aiming for the highest possible magnification.\n*   Houston was monitoring the feed and describing what they were seeing.\n\n**What They Saw:**\n\n*   **Earth:** The camera showed a view of Earth, appearing as a \u201clittle more than a half Earth\u201d to the left of the LM (Lunar Module).\n*   **North America:** They could see North America, including Alaska, the United States, Canada, Mexico, and Central America, on the northern half of the top of the screen.\n*   **Bright Spot:** Buzz Aldrin (one of the astronauts) observed a \u201cvery bright spot of light\u201d on the surface.  Charlie Duke (the CAPCOM \u2013 th",
+          "total_ms": 27646.0,
+          "terms_found": [
+            "camera",
+            "Earth"
+          ],
+          "terms_missing": [
+            "TV",
+            "focus",
+            "eagle"
+          ],
+          "grounded": false
+        }
+      }
+    },
+    {
+      "query": "How did Neil describe collecting rock samples around the elongate double crater?",
+      "category": "factual",
+      "verify_terms": [
+        "rock",
+        "sample",
+        "crater",
+        "variety",
+        "exhaust"
+      ],
+      "expected_verbatim": "ro(_kzl\nOll\nth(,\nsurface,\nand ucveral\nthat\nweru JusL LiuL)_LII'I'i_C_ -about 20 - 15 to 20 feet north of the t/q. And\nthen I recalled that that area had been probably\nswept pretty well by the exhaust of the descent\nengine, so I crossed over to the southern side\nof the IR, and took a number of samples from the\narea around the elongate double crater that we\ncommented on, and several beyond that, and tried\nto take as many different types - of rock types",
+      "results": {
+        "improved": {
+          "output": "According to the transcript, Neil described collecting rock samples around the elongate double crater by:\n\n*   Starting on the cut side of the LM that the TV camera was on.\n*   Taking 15-20 feet north of the LM.\n*   Crossing over to the southern side of the LM.\n*   Taking a number of samples from the area around the elongate double crater and several beyond it.\n*   Trying to collect as many different types of rock as he could see by eye in the short time available.",
+          "total_ms": 19874.0,
+          "windows": [
+            627,
+            532
+          ],
+          "terms_found": [
+            "rock",
+            "sample",
+            "crater"
+          ],
+          "terms_missing": [
+            "variety",
+            "exhaust"
+          ],
+          "grounded": true
+        },
+        "vanilla": {
+          "output": "According to Neil, he initially started collecting samples from the cut side of the LM (Lunar Module) where the TV camera was located. He then moved to the southern side of the LM to avoid the exhaust from the descent engine and collected samples around the elongate double crater and several others beyond it, trying to gather as many different types of rock as possible within the limited time available.",
+          "total_ms": 17306.0,
+          "windows": [
+            627
+          ],
+          "terms_found": [
+            "rock",
+            "sample",
+            "crater",
+            "exhaust"
+          ],
+          "terms_missing": [
+            "variety"
+          ],
+          "grounded": true
+        },
+        "original": {
+          "output": "Neil described collecting rock samples around the elongate double crater by:\n\n*   Taking a number of samples from the area around the crater and several beyond it.\n*   Trying to take as many different types of rock types as he could see by eye in the short time available.\n*   He noted he collected samples from the cut side of the LM that the TV camera was on, about 20-15 to 20 feet north of the TV.\n*   He also crossed over to the southern side of the LM to take samples from the area around the elongate double crater.",
+          "total_ms": 27746.0,
+          "terms_found": [
+            "rock",
+            "sample",
+            "crater"
+          ],
+          "terms_missing": [
+            "variety",
+            "exhaust"
+          ],
+          "grounded": true
+        }
+      }
+    }
+  ]
+}

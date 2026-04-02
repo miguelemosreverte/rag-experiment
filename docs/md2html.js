@@ -23,7 +23,11 @@ const runFiles = fs.readdirSync(RUNS_DIR).filter((f) => f.endsWith(".json")).sor
 const runs = runFiles.map((f) => {
   const json = JSON.parse(fs.readFileSync(path.join(RUNS_DIR, f), "utf-8"));
   const label = f.replace(".json", "");
-  const type = json.routing ? "skill" : json.document ? "apollo" : "unknown";
+  const bench = json.meta && json.meta.benchmark;
+  const type = bench === "apollo11_unified" ? "unified"
+    : json.routing ? "skill"
+    : json.document ? "apollo"
+    : "unknown";
   return { filename: f, label, json, type };
 });
 
@@ -288,10 +292,107 @@ function renderApolloPage(run, idx) {
 </div></body></html>`;
 }
 
+// ── Unified Apollo page ─────────────────────────────────────────────
+
+function renderUnifiedPage(run, idx) {
+  const d = run.json;
+  const methods = ["improved", "vanilla", "original"];
+  const labels = { improved: "Our Improved", vanilla: "Vanilla (no expansion)", original: "Upstream Original" };
+  const colors = { improved: "wsj-green", vanilla: "wsj-muted", original: "wsj-accent" };
+
+  function badge(grounded) {
+    return grounded
+      ? '<span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-green-100 text-wsj-green">GROUNDED</span>'
+      : '<span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span>';
+  }
+
+  const summaryRows = methods.map(m => {
+    const s = d.summary[m] || {};
+    return { label: labels[m], ...s };
+  });
+
+  return `${HEAD}<title>Apollo 11 Unified | Benchmark</title></head>
+<body class="font-serif text-wsj-text">
+<div class="max-w-6xl mx-auto px-6 py-8">
+  ${navBar(runs, idx)}
+
+  <div class="text-center mb-8">
+    <div class="text-xs uppercase tracking-widest text-wsj-muted font-sans">Apollo 11 Air-to-Ground Transcript</div>
+    <h2 class="text-xl font-bold mt-1">3-Way Comparison: Same 10 Queries, 3 Methods</h2>
+    <div class="text-sm text-wsj-muted mt-2">370,778 tokens | 725 windows | Gemma 3 4B | Markov Boundaries</div>
+  </div>
+
+  <!-- Summary KPIs per method -->
+  <div class="grid grid-cols-3 gap-4 mb-10">
+    ${methods.map(m => {
+      const s = d.summary[m] || {};
+      const pct = s.grounded_pct || 0;
+      const color = pct >= 60 ? "text-wsj-green" : pct >= 40 ? "text-wsj-text" : "text-wsj-red";
+      return `<div class="bg-white border border-wsj-border rounded-lg p-5 shadow-sm text-center">
+        <div class="text-xs uppercase tracking-wider text-wsj-muted font-sans mb-2">${labels[m]}</div>
+        <div class="text-3xl font-bold ${color} mb-1">${s.grounded || 0}/${s.total || 0}</div>
+        <div class="text-xs text-wsj-muted">grounded (${pct}%)</div>
+        <div class="mt-3 grid grid-cols-2 gap-2 text-xs">
+          <div><span class="text-wsj-muted">Terms:</span> ${s.terms_pct || 0}%</div>
+          <div><span class="text-wsj-muted">Avg:</span> ${((s.avg_query_ms || 0)/1000).toFixed(1)}s</div>
+        </div>
+      </div>`;
+    }).join("")}
+  </div>
+
+  <!-- Per-query cards -->
+  ${(d.queries || []).map((entry, i) => {
+    const safeExpected = (entry.expected_verbatim || "").replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    return `
+    <div class="bg-white border border-wsj-border rounded-lg p-5 mb-6 shadow-sm">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="font-mono text-xs text-wsj-muted">#${i+1}</span>
+        <span class="text-xs uppercase tracking-wider text-wsj-muted">${entry.category}</span>
+        <span class="text-xs text-wsj-muted">Verify: ${entry.verify_terms.join(", ")}</span>
+      </div>
+      <h3 class="font-bold text-sm mb-4">${entry.query}</h3>
+
+      <!-- Expected from transcript -->
+      <div class="mb-5">
+        <div class="text-xs uppercase tracking-wider text-wsj-muted font-sans mb-1">Expected (from transcript)</div>
+        <div class="bg-wsj-highlight border border-yellow-200 rounded p-3 font-mono text-xs leading-relaxed">${safeExpected || '<em>not found</em>'}</div>
+      </div>
+
+      <!-- 3 columns -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        ${methods.map(m => {
+          const r = (entry.results || {})[m] || {};
+          const output = (r.output || "").replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+          const found = r.terms_found || [];
+          const missing = r.terms_missing || [];
+          const ms = r.total_ms || 0;
+          return `<div class="border border-gray-200 rounded-lg p-4">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-bold uppercase tracking-wider">${labels[m]}</span>
+              ${badge(r.grounded)}
+            </div>
+            <div class="text-xs mb-2">
+              ${found.length > 0 ? `<span class="text-wsj-green">Found: ${found.join(", ")}</span>` : ''}
+              ${missing.length > 0 ? `<span class="text-wsj-red ml-1">Missing: ${missing.join(", ")}</span>` : ''}
+            </div>
+            <div class="text-xs text-wsj-muted mb-2">${(ms/1000).toFixed(1)}s</div>
+            <blockquote class="text-xs leading-relaxed border-l-2 border-gray-200 pl-3 max-h-48 overflow-y-auto">${output || '<em>no output</em>'}</blockquote>
+          </div>`;
+        }).join("")}
+      </div>
+    </div>`;
+  }).join("")}
+
+  <div class="text-center text-xs text-wsj-muted border-t border-wsj-border pt-4 mt-8">
+    <a href="index.html" class="text-wsj-accent hover:underline">All Runs</a> &middot; Gaucho AI
+  </div>
+</div></body></html>`;
+}
+
 // ── Generate pages ──────────────────────────────────────────────────
 
 runs.forEach((run, idx) => {
-  const html = run.type === "skill" ? renderSkillPage(run, idx) : renderApolloPage(run, idx);
+  const html = run.type === "skill" ? renderSkillPage(run, idx) : run.type === "unified" ? renderUnifiedPage(run, idx) : renderApolloPage(run, idx);
   fs.writeFileSync(path.join(DOCS_DIR, `${run.label}.html`), html);
   console.log(`  Generated: docs/${run.label}.html (${run.type})`);
 });
@@ -317,6 +418,19 @@ const indexHtml = `${HEAD}<title>Benchmark Timeline | RAG Experiment</title></he
           <div class="flex justify-between text-sm">
             <span>Accuracy: <strong class="${acc===100?"text-wsj-green":""}">${acc}%</strong></span>
             <span class="text-wsj-muted">${r.json.routing.avg_query_ms.toFixed(0)}ms/query</span>
+          </div>
+        </a>`;
+      } else if (r.type === "unified") {
+        const s = r.json.summary;
+        const methods = ["cli", "improved", "vanilla"];
+        return `<a href="${r.label}.html" class="block bg-white border-2 border-wsj-accent rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow col-span-full">
+          <div class="text-xs text-wsj-accent font-bold mb-1">3-Way Comparison &middot; Apollo 11</div>
+          <div class="font-bold text-lg mb-3">Unified: CLI vs Improved vs Vanilla</div>
+          <div class="grid grid-cols-3 gap-4 text-sm">
+            ${methods.map(m => {
+              const ms = s[m] || {};
+              return `<div><span class="text-wsj-muted">${m}:</span> <strong>${ms.grounded||0}/${ms.total||0}</strong> (${ms.grounded_pct||0}%)</div>`;
+            }).join("")}
           </div>
         </a>`;
       } else {
