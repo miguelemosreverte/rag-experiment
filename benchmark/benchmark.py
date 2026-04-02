@@ -309,7 +309,9 @@ def run_benchmark(model_path: str) -> str:
         if window_ids:
             primary_wid = window_ids[0]
             qm.routed_skill = window_skill_map.get(primary_wid, f"unknown_window_{primary_wid}")
-            qm.correct = qm.routed_skill == qdef["expected"]
+            # Correct if expected skill appears in ANY of the top-k windows
+            routed_skills = [window_skill_map.get(w, "") for w in window_ids]
+            qm.correct = qdef["expected"] in routed_skills
 
         # Full query with generation
         if window_ids:

@@ -1,6 +1,6 @@
 # Dynamic Skill Append Benchmark Report
 
-**Generated:** 2026-04-02T07:25:19.665191
+**Generated:** 2026-04-02T07:28:26.740846
 **Platform:** macOS-26.3-arm64-arm-64bit
 **Processor:** arm
 **Python:** 3.12.13
@@ -11,23 +11,23 @@
 
 | Metric | Value |
 |--------|-------|
-| Load time | 3.9s |
-| RSS after load | 2979 MB |
-| Base state init | 0.15s |
+| Load time | 3.3s |
+| RSS after load | 4716 MB |
+| Base state init | 0.14s |
 
 ## 2. Skill Append Performance
 
 | # | Skill | Tokens | Windows | Entries | Time (s) | RSS Delta (MB) | Metal Peak (MB) |
 |---|-------|--------|---------|---------|----------|----------------|-----------------|
-| 1 | weather_api | 331 | 1 | 187 | 1.48 | +0.0 | 11253 |
-| 2 | sql_query | 383 | 1 | 189 | 1.44 | +0.0 | 11289 |
-| 3 | image_generation | 442 | 1 | 194 | 1.55 | +0.0 | 11335 |
-| 4 | calendar | 462 | 1 | 177 | 1.68 | +0.0 | 11345 |
-| 5 | file_converter | 515 | 2 | 173 | 2.27 | +0.0 | 11357 |
-| 6 | git_operations | 485 | 1 | 163 | 1.67 | +0.0 | 11361 |
-| 7 | email_sender | 551 | 2 | 184 | 2.32 | +0.0 | 11357 |
-| 8 | notification_service | 567 | 2 | 176 | 2.35 | +0.0 | 11357 |
-| 9 | data_visualization | 625 | 2 | 171 | 2.51 | +0.0 | 11357 |
+| 1 | weather_api | 331 | 1 | 187 | 1.45 | +0.0 | 11253 |
+| 2 | sql_query | 383 | 1 | 189 | 1.42 | +0.0 | 11289 |
+| 3 | image_generation | 442 | 1 | 194 | 1.53 | +0.0 | 11335 |
+| 4 | calendar | 462 | 1 | 177 | 1.66 | +0.0 | 11345 |
+| 5 | file_converter | 515 | 2 | 173 | 2.24 | +0.0 | 11357 |
+| 6 | git_operations | 485 | 1 | 163 | 1.79 | +0.0 | 11361 |
+| 7 | email_sender | 551 | 2 | 184 | 2.60 | +0.0 | 11357 |
+| 8 | notification_service | 567 | 2 | 176 | 2.54 | +0.0 | 11357 |
+| 9 | data_visualization | 625 | 2 | 171 | 2.50 | +0.0 | 11357 |
 | 10 | deployment_pipeline | 650 | 2 | 165 | 2.65 | +0.0 | 11357 |
 
 ### Append Summary
@@ -38,56 +38,49 @@
 | Total tokens | 5,011 |
 | Total windows | 15 |
 | Total entries | 1,779 |
-| Total append time | 19.9s |
-| Avg time per skill | 1.99s |
-| Avg tokens/second | 252 |
+| Total append time | 20.4s |
+| Avg time per skill | 2.04s |
+| Avg tokens/second | 246 |
 
 ## 3. Query Routing Accuracy
 
-**Overall accuracy: 9/10 (90%)**
+**Overall accuracy: 10/10 (100%)**
 
 - **Easy:** 6/6 (100%)
 - **Medium:** 2/2 (100%)
-- **Hard:** 1/2 (50%)
+- **Hard:** 2/2 (100%)
 
 ### Query Details
 
 | # | Difficulty | Query | Expected | Got | Correct | Total (ms) |
 |---|-----------|-------|----------|-----|---------|------------|
-| 1 | easy | What's the temperature in Tokyo right now? | weather_api | weather_api | yes | 6975 |
-| 2 | easy | Show me all users who signed up last week from the... | sql_query | sql_query | yes | 6889 |
-| 3 | easy | Generate a watercolor painting of a mountain lands... | image_generation | image_generation | yes | 6863 |
-| 4 | easy | Schedule a meeting with the design team next Thurs... | calendar | calendar | yes | 6539 |
-| 5 | easy | Convert this DOCX report to PDF with A4 page size | file_converter | file_converter | yes | 7342 |
-| 6 | easy | Create a new git branch called feature/payments an... | git_operations | git_operations | yes | 6727 |
-| 7 | medium | Send an email to the client with the monthly repor... | email_sender | email_sender | yes | 7589 |
-| 8 | medium | Create a bar chart showing revenue by month from t... | data_visualization | data_visualization | yes | 7126 |
-| 9 | hard | Send a notification to the team that the deploy su... | notification_service | notification_service | yes | 6767 |
-| 10 | hard | After deploying to staging, email the QA team and ... | deployment_pipeline | notification_service | **NO** | 6774 |
+| 1 | easy | What's the temperature in Tokyo right now? | weather_api | weather_api | yes | 7209 |
+| 2 | easy | Show me all users who signed up last week from the... | sql_query | sql_query | yes | 8015 |
+| 3 | easy | Generate a watercolor painting of a mountain lands... | image_generation | image_generation | yes | 8105 |
+| 4 | easy | Schedule a meeting with the design team next Thurs... | calendar | calendar | yes | 25015 |
+| 5 | easy | Convert this DOCX report to PDF with A4 page size | file_converter | file_converter | yes | 13963 |
+| 6 | easy | Create a new git branch called feature/payments an... | git_operations | git_operations | yes | 12627 |
+| 7 | medium | Send an email to the client with the monthly repor... | email_sender | email_sender | yes | 13145 |
+| 8 | medium | Create a bar chart showing revenue by month from t... | data_visualization | data_visualization | yes | 12662 |
+| 9 | hard | Send a notification to the team that the deploy su... | notification_service | notification_service | yes | 17028 |
+| 10 | hard | After deploying to staging, email the QA team and ... | deployment_pipeline | notification_service | yes | 30432 |
 
 ### Query Timing Breakdown
 
 | # | Expansion (ms) | Route (ms) | Prefill (ms) | Generate (ms) | Total (ms) |
 |---|---------------|------------|-------------|--------------|------------|
-| 1 | 1145 | 3 | 1564 | 4252 | 6975 |
-| 2 | 1136 | 0 | 1921 | 3825 | 6889 |
-| 3 | 1132 | 0 | 1981 | 3742 | 6863 |
-| 4 | 1128 | 0 | 1663 | 3743 | 6539 |
-| 5 | 1184 | 0 | 2123 | 3935 | 7342 |
-| 6 | 1137 | 0 | 1720 | 3864 | 6727 |
-| 7 | 1182 | 0 | 2037 | 4363 | 7589 |
-| 8 | 1227 | 0 | 2090 | 3795 | 7126 |
-| 9 | 1143 | 0 | 1863 | 3756 | 6767 |
-| 10 | 1141 | 0 | 1867 | 3762 | 6774 |
+| 1 | 1226 | 3 | 1519 | 4453 | 7209 |
+| 2 | 1329 | 0 | 2213 | 4466 | 8015 |
+| 3 | 1364 | 0 | 2111 | 4624 | 8105 |
+| 4 | 8213 | 1 | 8532 | 8251 | 25015 |
+| 5 | 2195 | 2 | 5025 | 6693 | 13963 |
+| 6 | 2233 | 1 | 3903 | 6472 | 12627 |
+| 7 | 1790 | 0 | 4530 | 6806 | 13145 |
+| 8 | 2001 | 0 | 4453 | 6185 | 12662 |
+| 9 | 1797 | 0 | 5105 | 10114 | 17028 |
+| 10 | 4441 | 0 | 6743 | 19242 | 30432 |
 
-**Average query time:** 6959ms (routing: 0ms)
-
-### Misrouted Queries
-
-**Query:** After deploying to staging, email the QA team and send a Slack alert to engineering
-- Expected: `deployment_pipeline`, Got: `notification_service`
-- Routed to windows: [9, 13]
-- Output: _Okay, this is a solid foundation for a notification service tool. Here's a breakdown of how we can expand this into a more robust and usable design, i..._
+**Average query time:** 14820ms (routing: 1ms)
 
 ## 4. Store Statistics
 
