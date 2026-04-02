@@ -1,0 +1,317 @@
+{
+  "meta": {
+    "platform": "macOS-26.3-arm64-arm-64bit",
+    "processor": "arm",
+    "python": "3.12.13",
+    "model": "/Users/miguel_lemos/Desktop/gemma-3-4b-it",
+    "timestamp": "2026-04-02T07:34:45.634728",
+    "routing_method": "tfidf_expansion",
+    "run_id": "2026-04-02T07-34-45-634728"
+  },
+  "model": {
+    "load_time_s": 3.93,
+    "rss_mb": 3013.0,
+    "base_state_init_s": 0.141,
+    "crystal_layer": 30,
+    "window_size": 512
+  },
+  "append": {
+    "total_skills": 10,
+    "total_tokens": 5011,
+    "total_windows": 15,
+    "total_entries": 1779,
+    "total_time_s": 19.7,
+    "avg_time_per_skill_s": 1.97,
+    "tokens_per_second": 254.0,
+    "skills": [
+      {
+        "name": "weather_api",
+        "tokens": 331,
+        "windows": 1,
+        "entries": 187,
+        "time_s": 1.482,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11253.0
+      },
+      {
+        "name": "sql_query",
+        "tokens": 383,
+        "windows": 1,
+        "entries": 189,
+        "time_s": 1.438,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11289.0
+      },
+      {
+        "name": "image_generation",
+        "tokens": 442,
+        "windows": 1,
+        "entries": 194,
+        "time_s": 1.57,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11335.0
+      },
+      {
+        "name": "calendar",
+        "tokens": 462,
+        "windows": 1,
+        "entries": 177,
+        "time_s": 1.658,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11345.0
+      },
+      {
+        "name": "file_converter",
+        "tokens": 515,
+        "windows": 2,
+        "entries": 173,
+        "time_s": 2.243,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11357.0
+      },
+      {
+        "name": "git_operations",
+        "tokens": 485,
+        "windows": 1,
+        "entries": 163,
+        "time_s": 1.668,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11361.0
+      },
+      {
+        "name": "email_sender",
+        "tokens": 551,
+        "windows": 2,
+        "entries": 184,
+        "time_s": 2.292,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11357.0
+      },
+      {
+        "name": "notification_service",
+        "tokens": 567,
+        "windows": 2,
+        "entries": 176,
+        "time_s": 2.299,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11357.0
+      },
+      {
+        "name": "data_visualization",
+        "tokens": 625,
+        "windows": 2,
+        "entries": 171,
+        "time_s": 2.461,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11357.0
+      },
+      {
+        "name": "deployment_pipeline",
+        "tokens": 650,
+        "windows": 2,
+        "entries": 165,
+        "time_s": 2.588,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11357.0
+      }
+    ]
+  },
+  "routing": {
+    "accuracy": 100.0,
+    "correct": 10,
+    "total": 10,
+    "by_difficulty": {
+      "easy": {
+        "correct": 6,
+        "total": 6
+      },
+      "medium": {
+        "correct": 2,
+        "total": 2
+      },
+      "hard": {
+        "correct": 2,
+        "total": 2
+      }
+    },
+    "avg_query_ms": 6790.0,
+    "avg_expansion_ms": 1136.0,
+    "avg_route_ms": 0.0,
+    "avg_prefill_ms": 1842.0,
+    "avg_generate_ms": 3806.0,
+    "queries": [
+      {
+        "query": "What's the temperature in Tokyo right now?",
+        "expected": "weather_api",
+        "got": "weather_api",
+        "correct": true,
+        "difficulty": "easy",
+        "windows": [
+          0,
+          3
+        ],
+        "expansion_ms": 1152.3,
+        "route_ms": 2.8,
+        "prefill_ms": 1584.3,
+        "generate_ms": 3794.2,
+        "total_ms": 6542.2,
+        "output_snippet": "```tool_code\nweather = get_weather(city=\"Tokyo\")\nprint(weather)\n```"
+      },
+      {
+        "query": "Show me all users who signed up last week from the database",
+        "expected": "sql_query",
+        "got": "sql_query",
+        "correct": true,
+        "difficulty": "easy",
+        "windows": [
+          1,
+          9,
+          11
+        ],
+        "expansion_ms": 1156.2,
+        "route_ms": 0.2,
+        "prefill_ms": 1890.6,
+        "generate_ms": 3844.2,
+        "total_ms": 6897.4,
+        "output_snippet": "```python\nimport os\nimport logging\nimport json\nimport hashlib\n\nfrom asyncpg import create_pool\n\nlogger = logging.getLogger(__name__)\n\nDATABASE_URL = os.environ.get(\"DATABASE_URL\")\n\nif not DATABASE_URL"
+      },
+      {
+        "query": "Generate a watercolor painting of a mountain landscape at sunrise",
+        "expected": "image_generation",
+        "got": "image_generation",
+        "correct": true,
+        "difficulty": "easy",
+        "windows": [
+          2
+        ],
+        "expansion_ms": 1129.6,
+        "route_ms": 0.2,
+        "prefill_ms": 1940.0,
+        "generate_ms": 3732.8,
+        "total_ms": 6808.1,
+        "output_snippet": "```python\nimport uuid\nfrom diffusers import StableDiffusionXLProcessor, StableDiffusionXLPipeline\nimport torch\nimport time\n\ndef generate_image(prompt, negative_prompt=\"blurry, low quality, distorted\","
+      },
+      {
+        "query": "Schedule a meeting with the design team next Thursday at 2pm",
+        "expected": "calendar",
+        "got": "calendar",
+        "correct": true,
+        "difficulty": "easy",
+        "windows": [
+          3
+        ],
+        "expansion_ms": 1125.0,
+        "route_ms": 0.1,
+        "prefill_ms": 1650.0,
+        "generate_ms": 3726.6,
+        "total_ms": 6506.5,
+        "output_snippet": "Okay, let's schedule that meeting.  Here's the command to do that, incorporating the timezone information:\n\n```python\nevent = calendar_create(\n    title=\"Design Team Meeting\",\n    start=\"2024-03-21T14"
+      },
+      {
+        "query": "Convert this DOCX report to PDF with A4 page size",
+        "expected": "file_converter",
+        "got": "file_converter",
+        "correct": true,
+        "difficulty": "easy",
+        "windows": [
+          4
+        ],
+        "expansion_ms": 1122.4,
+        "route_ms": 0.1,
+        "prefill_ms": 1848.0,
+        "generate_ms": 3823.9,
+        "total_ms": 6799.6,
+        "output_snippet": "```python\ndef convert_file(input_path, output_format, output_path=None, options=None):\n    \"\"\"\n    Converts files between common formats using pandoc and openpyxl.\n\n    Args:\n        input_path (str):"
+      },
+      {
+        "query": "Create a new git branch called feature/payments and switch to it",
+        "expected": "git_operations",
+        "got": "git_operations",
+        "correct": true,
+        "difficulty": "easy",
+        "windows": [
+          6
+        ],
+        "expansion_ms": 1149.5,
+        "route_ms": 0.1,
+        "prefill_ms": 1830.7,
+        "generate_ms": 3775.7,
+        "total_ms": 6761.6,
+        "output_snippet": "```python\ndef git_op(repo_path, operation, **kwargs):\n    \"\"\"\n    Performs Git version control operations on local repositories.\n    Supports status checks, commits, branching, merging, and history in"
+      },
+      {
+        "query": "Send an email to the client with the monthly report PDF attached",
+        "expected": "email_sender",
+        "got": "email_sender",
+        "correct": true,
+        "difficulty": "medium",
+        "windows": [
+          7
+        ],
+        "expansion_ms": 1129.1,
+        "route_ms": 0.1,
+        "prefill_ms": 1870.4,
+        "generate_ms": 4037.6,
+        "total_ms": 7042.5,
+        "output_snippet": "```python\nimport os\nimport smtplib\nfrom email.mime.multipart import MIMEMultipart\nfrom email.mime.text import MIMEText\nfrom email.mime.base import MIMEBase\nfrom email import encoders\nfrom jinja2 impor"
+      },
+      {
+        "query": "Create a bar chart showing revenue by month from the sales database",
+        "expected": "data_visualization",
+        "got": "data_visualization",
+        "correct": true,
+        "difficulty": "medium",
+        "windows": [
+          11
+        ],
+        "expansion_ms": 1128.9,
+        "route_ms": 0.2,
+        "prefill_ms": 1980.9,
+        "generate_ms": 3767.0,
+        "total_ms": 6883.4,
+        "output_snippet": "```python\nimport pandas as pd\nimport plotly.express as px\nimport uuid\nimport os\n\ndef visualize(data, chart_type, x, y, title=None, color=None, output_format=\"html\", output_path=None):\n    \"\"\"\n    Crea"
+      },
+      {
+        "query": "Send a notification to the team that the deploy succeeded and include a link",
+        "expected": "notification_service",
+        "got": "notification_service",
+        "correct": true,
+        "difficulty": "hard",
+        "windows": [
+          9,
+          13
+        ],
+        "expansion_ms": 1140.4,
+        "route_ms": 0.1,
+        "prefill_ms": 1900.4,
+        "generate_ms": 3752.5,
+        "total_ms": 6798.9,
+        "output_snippet": "```python\nnotify(\n    channel=\"slack\",\n    recipient=\"#engineering\",\n    message=\"Deploy v2.3.1 completed successfully. All health checks passing.  Check out the details here: https://link-to-deployme"
+      },
+      {
+        "query": "After deploying to staging, email the QA team and send a Slack alert to engineering",
+        "expected": "deployment_pipeline",
+        "got": "notification_service",
+        "correct": true,
+        "difficulty": "hard",
+        "windows": [
+          9,
+          13
+        ],
+        "expansion_ms": 1131.2,
+        "route_ms": 0.1,
+        "prefill_ms": 1921.2,
+        "generate_ms": 3802.4,
+        "total_ms": 6859.7,
+        "output_snippet": "Okay, this is a solid foundation for a notification service tool. Here's a breakdown of how we can expand this into a more robust and usable design, incorporating best practices and addressing the not"
+      }
+    ]
+  },
+  "store": {
+    "version": 12,
+    "total_windows": 15,
+    "total_entries": 1779,
+    "idf_table_size": 1316,
+    "total_keywords": 98
+  }
+}

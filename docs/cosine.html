@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+            mono: ['"JetBrains Mono"', '"Fira Code"', 'Consolas', 'monospace'],
+          },
+          colors: {
+            wsj: {
+              bg: '#F8F5F0',
+              text: '#333333',
+              muted: '#666666',
+              accent: '#0274B6',
+              green: '#27752B',
+              red: '#BF2600',
+              border: '#D4CBC2',
+              highlight: '#FFF8E7',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #F8F5F0; }
+    .metric-card { transition: transform 0.15s; }
+    .metric-card:hover { transform: translateY(-2px); }
+    table { border-collapse: collapse; }
+    th { text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.7rem; }
+    td, th { border-bottom: 1px solid #D4CBC2; }
+    .correct { color: #27752B; }
+    .wrong { color: #BF2600; font-weight: 700; }
+    .bar { transition: width 0.6s ease-out; }
+  </style>
+</head>
+<title>cosine | Benchmark</title>
+</head>
+<body class="font-serif text-wsj-text">
+  <div class="max-w-5xl mx-auto px-6 py-8">
+    
+    <div class="flex justify-between items-center mb-8 border-b-2 border-wsj-text pb-4">
+      <div>
+        <span class="text-wsj-muted text-sm">&larr; (first run)</span>
+      </div>
+      <div class="text-center">
+        <div class="text-xs uppercase tracking-widest text-wsj-muted font-sans">Run 1 of 2</div>
+        <h1 class="text-2xl font-serif font-bold text-wsj-text mt-1">Cosine</h1>
+      </div>
+      <div>
+        <a href="tfidf_expansion.html" class="text-wsj-accent hover:underline text-sm">tfidf_expansion &rarr;</a>
+      </div>
+    </div>
+
+    <div class="text-xs text-wsj-muted mb-6">
+      macOS-26.3-arm64-arm-64bit &middot; gemma-3-4b-it &middot; 2026-04-02T07:38:47.686262
+    </div>
+
+    <!-- KPI cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+      
+    <div class="metric-card bg-white border border-wsj-border rounded-lg p-5 shadow-sm">
+      <div class="text-xs uppercase tracking-wider text-wsj-muted font-sans mb-1">Accuracy</div>
+      <div class="text-3xl font-serif font-bold text-wsj-text">80%<span class="text-lg text-wsj-muted ml-1"></span></div>
+    </div>
+      
+    <div class="metric-card bg-white border border-wsj-border rounded-lg p-5 shadow-sm">
+      <div class="text-xs uppercase tracking-wider text-wsj-muted font-sans mb-1">Avg Query</div>
+      <div class="text-3xl font-serif font-bold text-wsj-text">5801<span class="text-lg text-wsj-muted ml-1">ms</span></div>
+    </div>
+      
+    <div class="metric-card bg-white border border-wsj-border rounded-lg p-5 shadow-sm">
+      <div class="text-xs uppercase tracking-wider text-wsj-muted font-sans mb-1">Avg Append</div>
+      <div class="text-3xl font-serif font-bold text-wsj-text">1.99<span class="text-lg text-wsj-muted ml-1">s</span></div>
+    </div>
+      
+    <div class="metric-card bg-white border border-wsj-border rounded-lg p-5 shadow-sm">
+      <div class="text-xs uppercase tracking-wider text-wsj-muted font-sans mb-1">Memory</div>
+      <div class="text-3xl font-serif font-bold text-wsj-text">5031<span class="text-lg text-wsj-muted ml-1">MB</span></div>
+    </div>
+    </div>
+
+    <!-- Accuracy by difficulty -->
+    <h2 class="text-lg font-serif font-bold border-b border-wsj-border pb-2 mb-4">Routing Accuracy</h2>
+    <div class="grid grid-cols-3 gap-4 mb-8">
+      <div class="bg-white border border-wsj-border rounded-lg p-4 text-center shadow-sm">
+            <div class="text-xs uppercase tracking-wider text-wsj-muted mb-1">easy</div>
+            <div class="text-2xl font-bold text-wsj-text">4/6</div>
+          </div><div class="bg-white border border-wsj-border rounded-lg p-4 text-center shadow-sm">
+            <div class="text-xs uppercase tracking-wider text-wsj-muted mb-1">medium</div>
+            <div class="text-2xl font-bold text-wsj-green">2/2</div>
+          </div><div class="bg-white border border-wsj-border rounded-lg p-4 text-center shadow-sm">
+            <div class="text-xs uppercase tracking-wider text-wsj-muted mb-1">hard</div>
+            <div class="text-2xl font-bold text-wsj-green">2/2</div>
+          </div>
+    </div>
+
+    <!-- Query details -->
+    <h2 class="text-lg font-serif font-bold border-b border-wsj-border pb-2 mb-4">Query Details</h2>
+    <div class="overflow-x-auto mb-8">
+      <table class="w-full text-left">
+        <thead>
+          <tr class="border-b-2 border-wsj-text">
+            <th class="py-2 px-3">#</th>
+            <th class="py-2 px-3">Diff</th>
+            <th class="py-2 px-3">Query</th>
+            <th class="py-2 px-3">Expected</th>
+            <th class="py-2 px-3">Got</th>
+            <th class="py-2 px-3 text-center">OK</th>
+            <th class="py-2 px-3 text-right">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">1</td>
+      <td class="py-2 px-3 text-xs uppercase tracking-wider">easy</td>
+      <td class="py-2 px-3 text-sm">What's the temperature in Tokyo right now?</td>
+      <td class="py-2 px-3 font-mono text-xs">weather_api</td>
+      <td class="py-2 px-3 font-mono text-xs wrong">image_generation</td>
+      <td class="py-2 px-3 text-center wrong text-lg">&#10007;</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">5950</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">2</td>
+      <td class="py-2 px-3 text-xs uppercase tracking-wider">easy</td>
+      <td class="py-2 px-3 text-sm">Show me all users who signed up last week fro...</td>
+      <td class="py-2 px-3 font-mono text-xs">sql_query</td>
+      <td class="py-2 px-3 font-mono text-xs wrong">notification_service</td>
+      <td class="py-2 px-3 text-center wrong text-lg">&#10007;</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">6564</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">3</td>
+      <td class="py-2 px-3 text-xs uppercase tracking-wider">easy</td>
+      <td class="py-2 px-3 text-sm">Generate a watercolor painting of a mountain ...</td>
+      <td class="py-2 px-3 font-mono text-xs">image_generation</td>
+      <td class="py-2 px-3 font-mono text-xs correct">image_generation</td>
+      <td class="py-2 px-3 text-center correct text-lg">&#10003;</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">5846</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">4</td>
+      <td class="py-2 px-3 text-xs uppercase tracking-wider">easy</td>
+      <td class="py-2 px-3 text-sm">Schedule a meeting with the design team next ...</td>
+      <td class="py-2 px-3 font-mono text-xs">calendar</td>
+      <td class="py-2 px-3 font-mono text-xs correct">calendar</td>
+      <td class="py-2 px-3 text-center correct text-lg">&#10003;</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">5748</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">5</td>
+      <td class="py-2 px-3 text-xs uppercase tracking-wider">easy</td>
+      <td class="py-2 px-3 text-sm">Convert this DOCX report to PDF with A4 page ...</td>
+      <td class="py-2 px-3 font-mono text-xs">file_converter</td>
+      <td class="py-2 px-3 font-mono text-xs correct">image_generation</td>
+      <td class="py-2 px-3 text-center correct text-lg">&#10003;</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">5432</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">6</td>
+      <td class="py-2 px-3 text-xs uppercase tracking-wider">easy</td>
+      <td class="py-2 px-3 text-sm">Create a new git branch called feature/paymen...</td>
+      <td class="py-2 px-3 font-mono text-xs">git_operations</td>
+      <td class="py-2 px-3 font-mono text-xs correct">git_operations</td>
+      <td class="py-2 px-3 text-center correct text-lg">&#10003;</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">5421</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">7</td>
+      <td class="py-2 px-3 text-xs uppercase tracking-wider">medium</td>
+      <td class="py-2 px-3 text-sm">Send an email to the client with the monthly ...</td>
+      <td class="py-2 px-3 font-mono text-xs">email_sender</td>
+      <td class="py-2 px-3 font-mono text-xs correct">notification_service</td>
+      <td class="py-2 px-3 text-center correct text-lg">&#10003;</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">5755</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">8</td>
+      <td class="py-2 px-3 text-xs uppercase tracking-wider">medium</td>
+      <td class="py-2 px-3 text-sm">Create a bar chart showing revenue by month f...</td>
+      <td class="py-2 px-3 font-mono text-xs">data_visualization</td>
+      <td class="py-2 px-3 font-mono text-xs correct">data_visualization</td>
+      <td class="py-2 px-3 text-center correct text-lg">&#10003;</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">5978</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">9</td>
+      <td class="py-2 px-3 text-xs uppercase tracking-wider">hard</td>
+      <td class="py-2 px-3 text-sm">Send a notification to the team that the depl...</td>
+      <td class="py-2 px-3 font-mono text-xs">notification_service</td>
+      <td class="py-2 px-3 font-mono text-xs correct">notification_service</td>
+      <td class="py-2 px-3 text-center correct text-lg">&#10003;</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">5652</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">10</td>
+      <td class="py-2 px-3 text-xs uppercase tracking-wider">hard</td>
+      <td class="py-2 px-3 text-sm">After deploying to staging, email the QA team...</td>
+      <td class="py-2 px-3 font-mono text-xs">deployment_pipeline</td>
+      <td class="py-2 px-3 font-mono text-xs correct">notification_service</td>
+      <td class="py-2 px-3 text-center correct text-lg">&#10003;</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">5661</td>
+    </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Timing breakdown -->
+    <h2 class="text-lg font-serif font-bold border-b border-wsj-border pb-2 mb-4">Average Query Timing</h2>
+    <div class="bg-white border border-wsj-border rounded-lg p-6 mb-8 shadow-sm">
+      
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-24 text-xs text-wsj-muted text-right">Expansion</div>
+      <div class="flex-1 bg-gray-100 rounded-full h-5 overflow-hidden">
+        <div class="bar bg-wsj-accent h-full rounded-full" style="width:0%"></div>
+      </div>
+      <div class="w-16 text-xs font-mono text-right">0ms</div>
+    </div>
+      
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-24 text-xs text-wsj-muted text-right">Route</div>
+      <div class="flex-1 bg-gray-100 rounded-full h-5 overflow-hidden">
+        <div class="bar bg-wsj-accent h-full rounded-full" style="width:1.2239269091535943%"></div>
+      </div>
+      <div class="w-16 text-xs font-mono text-right">71ms</div>
+    </div>
+      
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-24 text-xs text-wsj-muted text-right">Prefill</div>
+      <div class="flex-1 bg-gray-100 rounded-full h-5 overflow-hidden">
+        <div class="bar bg-wsj-accent h-full rounded-full" style="width:32.63230477503878%"></div>
+      </div>
+      <div class="w-16 text-xs font-mono text-right">1893ms</div>
+    </div>
+      
+    <div class="flex items-center gap-3 mb-2">
+      <div class="w-24 text-xs text-wsj-muted text-right">Generate</div>
+      <div class="flex-1 bg-gray-100 rounded-full h-5 overflow-hidden">
+        <div class="bar bg-wsj-accent h-full rounded-full" style="width:66.09205309429409%"></div>
+      </div>
+      <div class="w-16 text-xs font-mono text-right">3834ms</div>
+    </div>
+    </div>
+
+    <!-- Append performance -->
+    <h2 class="text-lg font-serif font-bold border-b border-wsj-border pb-2 mb-4">Skill Append Performance</h2>
+    <div class="overflow-x-auto mb-8">
+      <table class="w-full text-left">
+        <thead>
+          <tr class="border-b-2 border-wsj-text">
+            <th class="py-2 px-3">#</th>
+            <th class="py-2 px-3">Skill</th>
+            <th class="py-2 px-3 text-right">Tokens</th>
+            <th class="py-2 px-3 text-right">Win</th>
+            <th class="py-2 px-3 text-right">Entries</th>
+            <th class="py-2 px-3 text-right">Time (s)</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">1</td>
+      <td class="py-2 px-3 text-sm">weather_api</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">331</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">1</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">187</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">1.73</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">2</td>
+      <td class="py-2 px-3 text-sm">sql_query</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">383</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">1</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">189</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">1.43</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">3</td>
+      <td class="py-2 px-3 text-sm">image_generation</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">442</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">1</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">194</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">1.53</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">4</td>
+      <td class="py-2 px-3 text-sm">calendar</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">462</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">1</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">177</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">1.66</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">5</td>
+      <td class="py-2 px-3 text-sm">file_converter</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">515</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">2</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">173</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">2.27</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">6</td>
+      <td class="py-2 px-3 text-sm">git_operations</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">485</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">1</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">163</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">1.67</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">7</td>
+      <td class="py-2 px-3 text-sm">email_sender</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">551</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">2</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">184</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">2.29</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">8</td>
+      <td class="py-2 px-3 text-sm">notification_service</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">567</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">2</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">176</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">2.29</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">9</td>
+      <td class="py-2 px-3 text-sm">data_visualization</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">625</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">2</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">171</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">2.47</td>
+    </tr>
+    <tr class="hover:bg-wsj-highlight">
+      <td class="py-2 px-3 font-mono text-xs">10</td>
+      <td class="py-2 px-3 text-sm">deployment_pipeline</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">650</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">2</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">165</td>
+      <td class="py-2 px-3 font-mono text-xs text-right">2.60</td>
+    </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center text-xs text-wsj-muted border-t border-wsj-border pt-4 mt-8">
+      Generated by <span class="font-mono">md2html.js</span> &middot;
+      <a href="index.html" class="text-wsj-accent hover:underline">All Runs</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('keydown', (e) => {
+      
+      if (e.key === 'ArrowRight') window.location.href = 'tfidf_expansion.html';
+    });
+  </script>
+</body>
+</html>

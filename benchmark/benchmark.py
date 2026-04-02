@@ -285,24 +285,34 @@ def run_benchmark(model_path: str) -> str:
 
         t0 = time.monotonic()
 
-        # Query expansion
-        expansion_ids = KnowledgeStore._expand_query(qdef["query"], tokenizer, kv_gen)
-        qm.expansion_ms = (time.monotonic() - t0) * 1000
+        routing_method = os.environ.get("BENCH_ROUTING_METHOD", "tfidf_expansion")
 
-        # Log expansion words for debugging
-        sw = store._build_stopword_ids(tokenizer)
-        exp_words = sorted({tokenizer.decode([t]).strip().lower()
-                           for t in expansion_ids
-                           if store.idf.get(t, 0.0) > 0 and t not in sw
-                           and len(tokenizer.decode([t]).strip()) >= 2})
-        print(f"    Expansion: {exp_words[:10]}", file=sys.stderr)
+        if routing_method == "cosine":
+            # Cosine similarity routing — no expansion needed
+            qm.expansion_ms = 0.0
+            t_route = time.monotonic()
+            window_ids = store.route_cosine(
+                qdef["query"], tokenizer, kv_gen, k=3
+            )
+            qm.route_ms = (time.monotonic() - t_route) * 1000
+        else:
+            # TF-IDF + expansion routing
+            expansion_ids = KnowledgeStore._expand_query(qdef["query"], tokenizer, kv_gen)
+            qm.expansion_ms = (time.monotonic() - t0) * 1000
 
-        # Route
-        t_route = time.monotonic()
-        window_ids = store.route_top_k(
-            qdef["query"], tokenizer, k=3, expansion_ids=expansion_ids
-        )
-        qm.route_ms = (time.monotonic() - t_route) * 1000
+            sw = store._build_stopword_ids(tokenizer)
+            exp_words = sorted({tokenizer.decode([t]).strip().lower()
+                               for t in expansion_ids
+                               if store.idf.get(t, 0.0) > 0 and t not in sw
+                               and len(tokenizer.decode([t]).strip()) >= 2})
+            print(f"    Expansion: {exp_words[:10]}", file=sys.stderr)
+
+            t_route = time.monotonic()
+            window_ids = store.route_top_k(
+                qdef["query"], tokenizer, k=3, expansion_ids=expansion_ids
+            )
+            qm.route_ms = (time.monotonic() - t_route) * 1000
+
         qm.routed_windows = window_ids
 
         # Determine which skill was routed to
@@ -379,10 +389,12 @@ def run_benchmark(model_path: str) -> str:
               file=sys.stderr)
         query_metrics.append(qm)
 
-    # ── Generate report ───────────────────────────────────────────────
-    report = generate_report(sysinfo, model_load_s, rss_after_model, init_s,
-                             append_metrics, query_metrics, ac, store)
-    return report
+    # ── Generate reports ────────────────────────────────────────────────
+    report_md = generate_report(sysinfo, model_load_s, rss_after_model, init_s,
+                                append_metrics, query_metrics, ac, store)
+    report_json = generate_json_report(sysinfo, model_load_s, rss_after_model, init_s,
+                                       append_metrics, query_metrics, ac, store)
+    return report_md, report_json
 
 
 def generate_report(
@@ -544,18 +556,125 @@ def generate_report(
     return "\n".join(lines)
 
 
+def generate_json_report(
+    sysinfo: dict,
+    model_load_s: float,
+    rss_after_model: float,
+    init_s: float,
+    append_metrics: list[AppendMetrics],
+    query_metrics: list[QueryMetrics],
+    config,
+    store: "KnowledgeStore",
+) -> dict:
+    """Generate a structured JSON report."""
+    correct = sum(1 for q in query_metrics if q.correct)
+    total = len(query_metrics)
+    total_append_s = sum(m.elapsed_s for m in append_metrics)
+    total_tokens = sum(m.num_tokens for m in append_metrics)
+
+    return {
+        "meta": {
+            **sysinfo,
+            "routing_method": os.environ.get("BENCH_ROUTING_METHOD", "tfidf_expansion"),
+            "run_id": sysinfo["timestamp"].replace(":", "-").replace(".", "-"),
+        },
+        "model": {
+            "load_time_s": round(model_load_s, 2),
+            "rss_mb": round(rss_after_model, 0),
+            "base_state_init_s": round(init_s, 3),
+            "crystal_layer": config.crystal_layer,
+            "window_size": config.window_size,
+        },
+        "append": {
+            "total_skills": len(append_metrics),
+            "total_tokens": total_tokens,
+            "total_windows": sum(m.num_windows for m in append_metrics),
+            "total_entries": sum(m.num_entries for m in append_metrics),
+            "total_time_s": round(total_append_s, 2),
+            "avg_time_per_skill_s": round(total_append_s / max(len(append_metrics), 1), 2),
+            "tokens_per_second": round(total_tokens / max(total_append_s, 0.01), 0),
+            "skills": [
+                {
+                    "name": m.skill_name,
+                    "tokens": m.num_tokens,
+                    "windows": m.num_windows,
+                    "entries": m.num_entries,
+                    "time_s": round(m.elapsed_s, 3),
+                    "rss_delta_mb": round(m.rss_after_mb - m.rss_before_mb, 1),
+                    "metal_peak_mb": round(m.metal_peak_mb, 0),
+                }
+                for m in append_metrics
+            ],
+        },
+        "routing": {
+            "accuracy": round(correct / max(total, 1) * 100, 1),
+            "correct": correct,
+            "total": total,
+            "by_difficulty": {
+                diff: {
+                    "correct": sum(1 for q in query_metrics if q.difficulty == diff and q.correct),
+                    "total": sum(1 for q in query_metrics if q.difficulty == diff),
+                }
+                for diff in ["easy", "medium", "hard"]
+            },
+            "avg_query_ms": round(sum(q.total_ms for q in query_metrics) / max(total, 1), 0),
+            "avg_expansion_ms": round(sum(q.expansion_ms for q in query_metrics) / max(total, 1), 0),
+            "avg_route_ms": round(sum(q.route_ms for q in query_metrics) / max(total, 1), 0),
+            "avg_prefill_ms": round(sum(q.prefill_ms for q in query_metrics) / max(total, 1), 0),
+            "avg_generate_ms": round(sum(q.generate_ms for q in query_metrics) / max(total, 1), 0),
+            "queries": [
+                {
+                    "query": q.query,
+                    "expected": q.expected_skill,
+                    "got": q.routed_skill,
+                    "correct": q.correct,
+                    "difficulty": q.difficulty,
+                    "windows": q.routed_windows,
+                    "expansion_ms": round(q.expansion_ms, 1),
+                    "route_ms": round(q.route_ms, 1),
+                    "prefill_ms": round(q.prefill_ms, 1),
+                    "generate_ms": round(q.generate_ms, 1),
+                    "total_ms": round(q.total_ms, 1),
+                    "output_snippet": q.output_snippet[:300],
+                }
+                for q in query_metrics
+            ],
+        },
+        "store": {
+            "version": 12,
+            "total_windows": store.num_windows,
+            "total_entries": len(store.entries),
+            "idf_table_size": len(store.idf),
+            "total_keywords": sum(len(v) for v in store.keywords.values()),
+        },
+    }
+
+
 # ── Entry point ──────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     model_path = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/Desktop/gemma-3-4b-it")
+    run_label = os.environ.get("BENCH_ROUTING_METHOD", "tfidf_expansion")
 
     print(f"Starting benchmark with model: {model_path}", file=sys.stderr)
-    report = run_benchmark(model_path)
+    report_md, report_json = run_benchmark(model_path)
 
-    # Write report
-    report_path = Path(__file__).parent / "BENCHMARK_REPORT.md"
-    report_path.write_text(report)
-    print(f"\n\nReport written to: {report_path}", file=sys.stderr)
+    # Write reports
+    runs_dir = Path(__file__).parent / "runs"
+    runs_dir.mkdir(exist_ok=True)
 
-    # Also print to stdout
-    print(report)
+    run_id = report_json["meta"]["run_id"]
+    md_path = runs_dir / f"{run_label}.md"
+    json_path = runs_dir / f"{run_label}.json"
+
+    md_path.write_text(report_md)
+    json_path.write_text(json.dumps(report_json, indent=2) + "\n")
+
+    # Also write latest to root
+    (Path(__file__).parent / "BENCHMARK_REPORT.md").write_text(report_md)
+
+    print(f"\n\nReports written to:", file=sys.stderr)
+    print(f"  {md_path}", file=sys.stderr)
+    print(f"  {json_path}", file=sys.stderr)
+
+    print(report_md)

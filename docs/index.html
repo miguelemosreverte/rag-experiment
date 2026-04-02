@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+            mono: ['"JetBrains Mono"', '"Fira Code"', 'Consolas', 'monospace'],
+          },
+          colors: {
+            wsj: {
+              bg: '#F8F5F0',
+              text: '#333333',
+              muted: '#666666',
+              accent: '#0274B6',
+              green: '#27752B',
+              red: '#BF2600',
+              border: '#D4CBC2',
+              highlight: '#FFF8E7',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #F8F5F0; }
+    .metric-card { transition: transform 0.15s; }
+    .metric-card:hover { transform: translateY(-2px); }
+    table { border-collapse: collapse; }
+    th { text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.7rem; }
+    td, th { border-bottom: 1px solid #D4CBC2; }
+    .correct { color: #27752B; }
+    .wrong { color: #BF2600; font-weight: 700; }
+    .bar { transition: width 0.6s ease-out; }
+  </style>
+</head>
+<title>Benchmark Timeline | RAG Experiment</title>
+</head>
+<body class="font-serif text-wsj-text">
+  <div class="max-w-6xl mx-auto px-6 py-8">
+    <div class="border-b-2 border-wsj-text pb-4 mb-8">
+      <div class="text-xs uppercase tracking-widest text-wsj-muted font-sans">RAG Experiment</div>
+      <h1 class="text-3xl font-bold mt-1">Benchmark Timeline</h1>
+      <p class="text-sm text-wsj-muted mt-2">Navigate with <kbd class="bg-gray-200 px-1.5 py-0.5 rounded text-xs font-mono">&larr;</kbd> <kbd class="bg-gray-200 px-1.5 py-0.5 rounded text-xs font-mono">&rarr;</kbd> arrow keys on individual run pages</p>
+    </div>
+
+    <!-- Comparison table -->
+    <div class="overflow-x-auto">
+      <table class="w-full text-left">
+        <thead>
+          <tr class="border-b-2 border-wsj-text">
+            <th class="py-2 px-4 w-40">Metric</th>
+            <th class="py-2 px-4 text-right"><a href="cosine.html" class="text-wsj-accent hover:underline">cosine</a></th><th class="py-2 px-4 text-right"><a href="tfidf_expansion.html" class="text-wsj-accent hover:underline">tfidf expansion</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hover:bg-wsj-highlight">
+            <td class="py-3 px-4 text-sm font-sans uppercase tracking-wider text-wsj-muted">Accuracy</td>
+            
+      <td class="py-3 px-4 font-mono text-right ">
+        80%
+      </td>
+      <td class="py-3 px-4 font-mono text-right font-bold text-wsj-green">
+        100%
+      </td>
+          </tr>
+          <tr class="hover:bg-wsj-highlight">
+            <td class="py-3 px-4 text-sm font-sans uppercase tracking-wider text-wsj-muted">Avg Query</td>
+            
+      <td class="py-3 px-4 font-mono text-right font-bold text-wsj-green">
+        5801ms
+      </td>
+      <td class="py-3 px-4 font-mono text-right ">
+        6790ms
+      </td>
+          </tr>
+          <tr class="hover:bg-wsj-highlight">
+            <td class="py-3 px-4 text-sm font-sans uppercase tracking-wider text-wsj-muted">Avg Expansion</td>
+            
+      <td class="py-3 px-4 font-mono text-right font-bold text-wsj-green">
+        0ms
+      </td>
+      <td class="py-3 px-4 font-mono text-right ">
+        1136ms
+      </td>
+          </tr>
+          <tr class="hover:bg-wsj-highlight">
+            <td class="py-3 px-4 text-sm font-sans uppercase tracking-wider text-wsj-muted">Avg Route</td>
+            
+      <td class="py-3 px-4 font-mono text-right ">
+        71ms
+      </td>
+      <td class="py-3 px-4 font-mono text-right font-bold text-wsj-green">
+        0ms
+      </td>
+          </tr>
+          <tr class="hover:bg-wsj-highlight">
+            <td class="py-3 px-4 text-sm font-sans uppercase tracking-wider text-wsj-muted">Avg Append</td>
+            
+      <td class="py-3 px-4 font-mono text-right ">
+        2.0s
+      </td>
+      <td class="py-3 px-4 font-mono text-right font-bold text-wsj-green">
+        2.0s
+      </td>
+          </tr>
+          <tr class="hover:bg-wsj-highlight">
+            <td class="py-3 px-4 text-sm font-sans uppercase tracking-wider text-wsj-muted">Memory</td>
+            
+      <td class="py-3 px-4 font-mono text-right ">
+        5031MB
+      </td>
+      <td class="py-3 px-4 font-mono text-right font-bold text-wsj-green">
+        3013MB
+      </td>
+          </tr>
+          <tr class="hover:bg-wsj-highlight">
+            <td class="py-3 px-4 text-sm font-sans uppercase tracking-wider text-wsj-muted">Easy</td>
+            <td class="py-3 px-4 font-mono text-right">4/6</td><td class="py-3 px-4 font-mono text-right">6/6</td>
+          </tr>
+          <tr class="hover:bg-wsj-highlight">
+            <td class="py-3 px-4 text-sm font-sans uppercase tracking-wider text-wsj-muted">Medium</td>
+            <td class="py-3 px-4 font-mono text-right">2/2</td><td class="py-3 px-4 font-mono text-right">2/2</td>
+          </tr>
+          <tr class="hover:bg-wsj-highlight">
+            <td class="py-3 px-4 text-sm font-sans uppercase tracking-wider text-wsj-muted">Hard</td>
+            <td class="py-3 px-4 font-mono text-right">2/2</td><td class="py-3 px-4 font-mono text-right">2/2</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Run cards -->
+    <h2 class="text-lg font-serif font-bold border-b border-wsj-border pb-2 mb-4 mt-10">Runs</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      
+        <a href="cosine.html" class="block bg-white border border-wsj-border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-xs text-wsj-muted mb-1">Run 1</div>
+          <div class="font-bold text-lg mb-2">cosine</div>
+          <div class="flex justify-between text-sm">
+            <span>Accuracy: <strong class="">80%</strong></span>
+            <span class="text-wsj-muted">5801ms/query</span>
+          </div>
+        </a>
+        <a href="tfidf_expansion.html" class="block bg-white border border-wsj-border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow">
+          <div class="text-xs text-wsj-muted mb-1">Run 2</div>
+          <div class="font-bold text-lg mb-2">tfidf expansion</div>
+          <div class="flex justify-between text-sm">
+            <span>Accuracy: <strong class="text-wsj-green">100%</strong></span>
+            <span class="text-wsj-muted">6790ms/query</span>
+          </div>
+        </a>
+    </div>
+
+    <div class="text-center text-xs text-wsj-muted border-t border-wsj-border pt-4 mt-8">
+      RAG Experiment &middot; Gaucho AI
+    </div>
+  </div>
+</body>
+</html>
