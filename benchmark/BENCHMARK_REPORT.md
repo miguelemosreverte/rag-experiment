@@ -1,6 +1,6 @@
 # Dynamic Skill Append Benchmark Report
 
-**Generated:** 2026-04-02T07:14:37.559741
+**Generated:** 2026-04-02T07:25:19.665191
 **Platform:** macOS-26.3-arm64-arm-64bit
 **Processor:** arm
 **Python:** 3.12.13
@@ -11,23 +11,23 @@
 
 | Metric | Value |
 |--------|-------|
-| Load time | 3.3s |
-| RSS after load | 5741 MB |
+| Load time | 3.9s |
+| RSS after load | 2979 MB |
 | Base state init | 0.15s |
 
 ## 2. Skill Append Performance
 
 | # | Skill | Tokens | Windows | Entries | Time (s) | RSS Delta (MB) | Metal Peak (MB) |
 |---|-------|--------|---------|---------|----------|----------------|-----------------|
-| 1 | weather_api | 331 | 1 | 187 | 1.50 | +0.0 | 11253 |
-| 2 | sql_query | 383 | 1 | 189 | 1.53 | +0.0 | 11289 |
-| 3 | image_generation | 442 | 1 | 194 | 1.65 | +0.0 | 11335 |
-| 4 | calendar | 462 | 1 | 177 | 1.73 | +0.0 | 11345 |
-| 5 | file_converter | 515 | 2 | 173 | 2.38 | +0.0 | 11357 |
-| 6 | git_operations | 485 | 1 | 163 | 1.71 | +0.0 | 11361 |
-| 7 | email_sender | 551 | 2 | 184 | 2.34 | +0.0 | 11357 |
-| 8 | notification_service | 567 | 2 | 176 | 2.37 | +0.0 | 11357 |
-| 9 | data_visualization | 625 | 2 | 171 | 2.54 | +0.0 | 11357 |
+| 1 | weather_api | 331 | 1 | 187 | 1.48 | +0.0 | 11253 |
+| 2 | sql_query | 383 | 1 | 189 | 1.44 | +0.0 | 11289 |
+| 3 | image_generation | 442 | 1 | 194 | 1.55 | +0.0 | 11335 |
+| 4 | calendar | 462 | 1 | 177 | 1.68 | +0.0 | 11345 |
+| 5 | file_converter | 515 | 2 | 173 | 2.27 | +0.0 | 11357 |
+| 6 | git_operations | 485 | 1 | 163 | 1.67 | +0.0 | 11361 |
+| 7 | email_sender | 551 | 2 | 184 | 2.32 | +0.0 | 11357 |
+| 8 | notification_service | 567 | 2 | 176 | 2.35 | +0.0 | 11357 |
+| 9 | data_visualization | 625 | 2 | 171 | 2.51 | +0.0 | 11357 |
 | 10 | deployment_pipeline | 650 | 2 | 165 | 2.65 | +0.0 | 11357 |
 
 ### Append Summary
@@ -38,9 +38,9 @@
 | Total tokens | 5,011 |
 | Total windows | 15 |
 | Total entries | 1,779 |
-| Total append time | 20.4s |
-| Avg time per skill | 2.04s |
-| Avg tokens/second | 246 |
+| Total append time | 19.9s |
+| Avg time per skill | 1.99s |
+| Avg tokens/second | 252 |
 
 ## 3. Query Routing Accuracy
 
@@ -54,33 +54,33 @@
 
 | # | Difficulty | Query | Expected | Got | Correct | Total (ms) |
 |---|-----------|-------|----------|-----|---------|------------|
-| 1 | easy | What's the temperature in Tokyo right now? | weather_api | weather_api | yes | 6460 |
-| 2 | easy | Show me all users who signed up last week from the... | sql_query | sql_query | yes | 7261 |
-| 3 | easy | Generate a watercolor painting of a mountain lands... | image_generation | image_generation | yes | 7322 |
-| 4 | easy | Schedule a meeting with the design team next Thurs... | calendar | calendar | yes | 7295 |
-| 5 | easy | Convert this DOCX report to PDF with A4 page size | file_converter | file_converter | yes | 7348 |
-| 6 | easy | Create a new git branch called feature/payments an... | git_operations | git_operations | yes | 6950 |
-| 7 | medium | Send an email to the client with the monthly repor... | email_sender | email_sender | yes | 7028 |
-| 8 | medium | Create a bar chart showing revenue by month from t... | data_visualization | data_visualization | yes | 7014 |
-| 9 | hard | Send a notification to the team that the deploy su... | notification_service | notification_service | yes | 7148 |
-| 10 | hard | After deploying to staging, email the QA team and ... | deployment_pipeline | notification_service | **NO** | 7473 |
+| 1 | easy | What's the temperature in Tokyo right now? | weather_api | weather_api | yes | 6975 |
+| 2 | easy | Show me all users who signed up last week from the... | sql_query | sql_query | yes | 6889 |
+| 3 | easy | Generate a watercolor painting of a mountain lands... | image_generation | image_generation | yes | 6863 |
+| 4 | easy | Schedule a meeting with the design team next Thurs... | calendar | calendar | yes | 6539 |
+| 5 | easy | Convert this DOCX report to PDF with A4 page size | file_converter | file_converter | yes | 7342 |
+| 6 | easy | Create a new git branch called feature/payments an... | git_operations | git_operations | yes | 6727 |
+| 7 | medium | Send an email to the client with the monthly repor... | email_sender | email_sender | yes | 7589 |
+| 8 | medium | Create a bar chart showing revenue by month from t... | data_visualization | data_visualization | yes | 7126 |
+| 9 | hard | Send a notification to the team that the deploy su... | notification_service | notification_service | yes | 6767 |
+| 10 | hard | After deploying to staging, email the QA team and ... | deployment_pipeline | notification_service | **NO** | 6774 |
 
 ### Query Timing Breakdown
 
 | # | Expansion (ms) | Route (ms) | Prefill (ms) | Generate (ms) | Total (ms) |
 |---|---------------|------------|-------------|--------------|------------|
-| 1 | 1127 | 3 | 1438 | 3883 | 6460 |
-| 2 | 1133 | 0 | 2060 | 4061 | 7261 |
-| 3 | 1156 | 0 | 2206 | 3955 | 7322 |
-| 4 | 1135 | 0 | 2095 | 4059 | 7295 |
-| 5 | 1129 | 0 | 2354 | 3860 | 7348 |
-| 6 | 1188 | 0 | 1957 | 3799 | 6950 |
-| 7 | 1124 | 0 | 2104 | 3794 | 7028 |
-| 8 | 1128 | 0 | 2062 | 3819 | 7014 |
-| 9 | 1172 | 0 | 2193 | 3777 | 7148 |
-| 10 | 1153 | 0 | 2458 | 3857 | 7473 |
+| 1 | 1145 | 3 | 1564 | 4252 | 6975 |
+| 2 | 1136 | 0 | 1921 | 3825 | 6889 |
+| 3 | 1132 | 0 | 1981 | 3742 | 6863 |
+| 4 | 1128 | 0 | 1663 | 3743 | 6539 |
+| 5 | 1184 | 0 | 2123 | 3935 | 7342 |
+| 6 | 1137 | 0 | 1720 | 3864 | 6727 |
+| 7 | 1182 | 0 | 2037 | 4363 | 7589 |
+| 8 | 1227 | 0 | 2090 | 3795 | 7126 |
+| 9 | 1143 | 0 | 1863 | 3756 | 6767 |
+| 10 | 1141 | 0 | 1867 | 3762 | 6774 |
 
-**Average query time:** 7130ms (routing: 0ms)
+**Average query time:** 6959ms (routing: 0ms)
 
 ### Misrouted Queries
 
@@ -159,7 +159,7 @@ def convert_file(input_path, output_format, output_path=None, options=None):
         input_path (str):
 
 ### Query 6: Create a new git branch called feature/payments and switch to it
-- **Routed to:** `git_operations` (windows [6, 13])
+- **Routed to:** `git_operations` (windows [6])
 - **Output:**
 > ```python
 def git_op(repo_path, operation, **kwargs):
