@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+            mono: ['"JetBrains Mono"', '"Fira Code"', 'Consolas', 'monospace'],
+          },
+          colors: {
+            wsj: { bg:'#F8F5F0', text:'#333', muted:'#666', accent:'#0274B6',
+                   green:'#27752B', red:'#BF2600', border:'#D4CBC2', highlight:'#FFF8E7' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #F8F5F0; }
+    .metric-card { transition: transform 0.15s; }
+    .metric-card:hover { transform: translateY(-2px); }
+    table { border-collapse: collapse; }
+    th { text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.7rem; }
+    td, th { border-bottom: 1px solid #D4CBC2; }
+    .bar { transition: width 0.6s ease-out; }
+    blockquote { border-left: 3px solid #D4CBC2; padding-left: 1rem; color: #555; font-style: italic; }
+  </style>
+</head><title>apollo11 | Apollo 11 Benchmark</title></head>
+<body class="font-serif text-wsj-text">
+<div class="max-w-5xl mx-auto px-6 py-8">
+  <div class="flex justify-between items-center mb-8 border-b-2 border-wsj-text pb-4">
+    <div><span class="text-wsj-muted text-sm">&larr;</span></div>
+    <div class="text-center">
+      <div class="text-xs uppercase tracking-widest text-wsj-muted font-sans">Run 1 of 4</div>
+      <h1 class="text-2xl font-serif font-bold text-wsj-text mt-1">Apollo11</h1>
+    </div>
+    <div><a href="cosine.html" class="text-wsj-accent hover:underline text-sm">cosine &rarr;</a></div>
+  </div>
+  <script>document.addEventListener('keydown',e=>{
+    
+    if(e.key==='ArrowRight')window.location.href='cosine.html';
+  });</script>
+
+  <!-- Masthead -->
+  <div class="text-center mb-8">
+    <div class="text-xs uppercase tracking-widest text-wsj-muted font-sans">Apollo 11 Air-to-Ground Transcript</div>
+    <h2 class="text-xl font-bold mt-1">370,778 Tokens Compressed to Markov Boundaries</h2>
+    <div class="text-sm text-wsj-muted mt-2">725 windows &middot; 8,159 entries &middot; 11,450 IDF tokens &middot; Gemma 3 4B</div>
+  </div>
+
+  <!-- KPI cards -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+    <div class="metric-card bg-white border border-wsj-border rounded-lg p-5 shadow-sm">
+    <div class="text-xs uppercase tracking-wider text-wsj-muted font-sans mb-1">Grounded</div>
+    <div class="text-3xl font-serif font-bold text-wsj-text">3/10<span class="text-lg text-wsj-muted ml-1"></span></div>
+  </div>
+    <div class="metric-card bg-white border border-wsj-border rounded-lg p-5 shadow-sm">
+    <div class="text-xs uppercase tracking-wider text-wsj-muted font-sans mb-1">Terms Found</div>
+    <div class="text-3xl font-serif font-bold text-wsj-text">25.7%<span class="text-lg text-wsj-muted ml-1"></span></div>
+  </div>
+    <div class="metric-card bg-white border border-wsj-border rounded-lg p-5 shadow-sm">
+    <div class="text-xs uppercase tracking-wider text-wsj-muted font-sans mb-1">Avg Query</div>
+    <div class="text-3xl font-serif font-bold text-wsj-text">43.8<span class="text-lg text-wsj-muted ml-1">s</span></div>
+  </div>
+    <div class="metric-card bg-white border border-wsj-border rounded-lg p-5 shadow-sm">
+    <div class="text-xs uppercase tracking-wider text-wsj-muted font-sans mb-1">Model Load</div>
+    <div class="text-3xl font-serif font-bold text-wsj-text">5.08<span class="text-lg text-wsj-muted ml-1">s</span></div>
+  </div>
+  </div>
+
+  <!-- By category -->
+  <h2 class="text-lg font-serif font-bold border-b border-wsj-border pb-2 mb-4">Grounding by Category</h2>
+  <div class="grid grid-cols-3 gap-4 mb-8">
+    <div class="bg-white border border-wsj-border rounded-lg p-4 text-center shadow-sm">
+        <div class="text-xs uppercase tracking-wider text-wsj-muted mb-1">verbatim</div>
+        <div class="text-2xl font-bold text-wsj-red">1/5</div></div><div class="bg-white border border-wsj-border rounded-lg p-4 text-center shadow-sm">
+        <div class="text-xs uppercase tracking-wider text-wsj-muted mb-1">factual</div>
+        <div class="text-2xl font-bold text-wsj-text">2/4</div></div><div class="bg-white border border-wsj-border rounded-lg p-4 text-center shadow-sm">
+        <div class="text-xs uppercase tracking-wider text-wsj-muted mb-1">interpretive</div>
+        <div class="text-2xl font-bold text-wsj-red">0/1</div></div>
+  </div>
+
+  <!-- Query results table -->
+  <h2 class="text-lg font-serif font-bold border-b border-wsj-border pb-2 mb-4">Query Results</h2>
+  <div class="overflow-x-auto mb-8"><table class="w-full text-left"><thead>
+    <tr class="border-b-2 border-wsj-text">
+      <th class="py-2 px-3">#</th><th class="py-2 px-3">Category</th><th class="py-2 px-3">Query</th>
+      <th class="py-2 px-3 text-center">Status</th><th class="py-2 px-3 text-center">Terms</th><th class="py-2 px-3 text-right">Time</th>
+    </tr>
+  </thead><tbody>
+    <tr class="hover:bg-wsj-highlight">
+        <td class="py-2 px-3 font-mono text-xs">1</td>
+        <td class="py-2 px-3 text-xs uppercase tracking-wider">verbatim</td>
+        <td class="py-2 px-3 text-sm">Quote verbatim what Houston said to Columbia when Eagle...</td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span></td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-mono bg-red-50 text-wsj-red">0/3</span></td>
+        <td class="py-2 px-3 font-mono text-xs text-right">37.7s</td>
+      </tr><tr class="hover:bg-wsj-highlight">
+        <td class="py-2 px-3 font-mono text-xs">2</td>
+        <td class="py-2 px-3 text-xs uppercase tracking-wider">verbatim</td>
+        <td class="py-2 px-3 text-sm">What did the astronauts describe seeing on the lunar su...</td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span></td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-mono bg-red-50 text-wsj-red">1/4</span></td>
+        <td class="py-2 px-3 font-mono text-xs text-right">34.6s</td>
+      </tr><tr class="hover:bg-wsj-highlight">
+        <td class="py-2 px-3 font-mono text-xs">3</td>
+        <td class="py-2 px-3 text-xs uppercase tracking-wider">verbatim</td>
+        <td class="py-2 px-3 text-sm">Quote verbatim the goodnight message from Houston near ...</td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span></td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-mono bg-red-50 text-wsj-red">0/3</span></td>
+        <td class="py-2 px-3 font-mono text-xs text-right">32.8s</td>
+      </tr><tr class="hover:bg-wsj-highlight">
+        <td class="py-2 px-3 font-mono text-xs">4</td>
+        <td class="py-2 px-3 text-xs uppercase tracking-wider">verbatim</td>
+        <td class="py-2 px-3 text-sm">What did the crew say about the chinch bugs? Quote the ...</td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-green-100 text-wsj-green">GROUNDED</span></td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-mono bg-yellow-50 text-yellow-700">1/2</span></td>
+        <td class="py-2 px-3 font-mono text-xs text-right">47.0s</td>
+      </tr><tr class="hover:bg-wsj-highlight">
+        <td class="py-2 px-3 font-mono text-xs">5</td>
+        <td class="py-2 px-3 text-xs uppercase tracking-wider">verbatim</td>
+        <td class="py-2 px-3 text-sm">What was the astronauts' impression of the lunar soil w...</td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span></td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-mono bg-red-50 text-wsj-red">1/3</span></td>
+        <td class="py-2 px-3 font-mono text-xs text-right">74.5s</td>
+      </tr><tr class="hover:bg-wsj-highlight">
+        <td class="py-2 px-3 font-mono text-xs">6</td>
+        <td class="py-2 px-3 text-xs uppercase tracking-wider">factual</td>
+        <td class="py-2 px-3 text-sm">What news from Earth was read to the astronauts during ...</td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span></td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-mono bg-red-50 text-wsj-red">0/4</span></td>
+        <td class="py-2 px-3 font-mono text-xs text-right">45.2s</td>
+      </tr><tr class="hover:bg-wsj-highlight">
+        <td class="py-2 px-3 font-mono text-xs">7</td>
+        <td class="py-2 px-3 text-xs uppercase tracking-wider">factual</td>
+        <td class="py-2 px-3 text-sm">What technical problems did the crew report during thei...</td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span></td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-mono bg-red-50 text-wsj-red">0/3</span></td>
+        <td class="py-2 px-3 font-mono text-xs text-right">42.5s</td>
+      </tr><tr class="hover:bg-wsj-highlight">
+        <td class="py-2 px-3 font-mono text-xs">8</td>
+        <td class="py-2 px-3 text-xs uppercase tracking-wider">interpretive</td>
+        <td class="py-2 px-3 text-sm">Describe the astronauts' closing remarks before splashd...</td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span></td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-mono bg-red-50 text-wsj-red">0/5</span></td>
+        <td class="py-2 px-3 font-mono text-xs text-right">41.6s</td>
+      </tr><tr class="hover:bg-wsj-highlight">
+        <td class="py-2 px-3 font-mono text-xs">9</td>
+        <td class="py-2 px-3 text-xs uppercase tracking-wider">factual</td>
+        <td class="py-2 px-3 text-sm">What was the crew's experience with the television broa...</td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-green-100 text-wsj-green">GROUNDED</span></td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-mono bg-yellow-50 text-yellow-700">2/4</span></td>
+        <td class="py-2 px-3 font-mono text-xs text-right">42.2s</td>
+      </tr><tr class="hover:bg-wsj-highlight">
+        <td class="py-2 px-3 font-mono text-xs">10</td>
+        <td class="py-2 px-3 text-xs uppercase tracking-wider">factual</td>
+        <td class="py-2 px-3 text-sm">How did the crew describe the process of collecting roc...</td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-green-100 text-wsj-green">GROUNDED</span></td>
+        <td class="py-2 px-3 text-center"><span class="inline-block px-2 py-0.5 rounded text-xs font-mono bg-green-100 text-wsj-green">4/4</span></td>
+        <td class="py-2 px-3 font-mono text-xs text-right">39.8s</td>
+      </tr>
+  </tbody></table></div>
+
+  <!-- Timing -->
+  <h2 class="text-lg font-serif font-bold border-b border-wsj-border pb-2 mb-4">Average Query Timing</h2>
+  <div class="bg-white border border-wsj-border rounded-lg p-6 mb-8 shadow-sm">
+    <div class="flex items-center gap-3 mb-2">
+    <div class="w-24 text-xs text-wsj-muted text-right">Expansion</div>
+    <div class="flex-1 bg-gray-100 rounded-full h-5 overflow-hidden">
+      <div class="bar bg-wsj-accent h-full rounded-full" style="width:3.6825530943137696%"></div>
+    </div>
+    <div class="w-16 text-xs font-mono text-right">1613ms</div>
+  </div>
+    <div class="flex items-center gap-3 mb-2">
+    <div class="w-24 text-xs text-wsj-muted text-right">Route</div>
+    <div class="flex-1 bg-gray-100 rounded-full h-5 overflow-hidden">
+      <div class="bar bg-wsj-accent h-full rounded-full" style="width:0.047248230189540996%"></div>
+    </div>
+    <div class="w-16 text-xs font-mono text-right">21ms</div>
+  </div>
+    <div class="flex items-center gap-3 mb-2">
+    <div class="w-24 text-xs text-wsj-muted text-right">Prefill</div>
+    <div class="flex-1 bg-gray-100 rounded-full h-5 overflow-hidden">
+      <div class="bar bg-wsj-accent h-full rounded-full" style="width:20.09753368348938%"></div>
+    </div>
+    <div class="w-16 text-xs font-mono text-right">8801ms</div>
+  </div>
+    <div class="flex items-center gap-3 mb-2">
+    <div class="w-24 text-xs text-wsj-muted text-right">Generate</div>
+    <div class="flex-1 bg-gray-100 rounded-full h-5 overflow-hidden">
+      <div class="bar bg-wsj-accent h-full rounded-full" style="width:72.00778716601963%"></div>
+    </div>
+    <div class="w-16 text-xs font-mono text-right">31532ms</div>
+  </div>
+  </div>
+
+  <!-- Full query outputs -->
+  <h2 class="text-lg font-serif font-bold border-b border-wsj-border pb-2 mb-4">Full Query Outputs</h2>
+  
+    <div class="bg-white border border-wsj-border rounded-lg p-5 mb-4 shadow-sm">
+      <div class="flex items-start justify-between mb-3">
+        <div>
+          <span class="font-mono text-xs text-wsj-muted mr-2">#1</span>
+          <span class="text-xs uppercase tracking-wider text-wsj-muted mr-3">verbatim</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span>
+        </div>
+        <div class="font-mono text-xs text-wsj-muted">Windows: 354, 532, 558 &middot; 37.7s</div>
+      </div>
+      <h3 class="font-bold text-sm mb-2">Quote verbatim what Houston said to Columbia when Eagle landed. Provide only the exact words from the transcript.</h3>
+      <div class="mb-2"><span class="text-wsj-red text-xs ml-2">Missing: Tranquility Base, Eagle, landed</span></div>
+      <blockquote class="text-sm leading-relaxed mt-3">“We'll have AOS for you 102 16.”</blockquote>
+    </div>
+    <div class="bg-white border border-wsj-border rounded-lg p-5 mb-4 shadow-sm">
+      <div class="flex items-start justify-between mb-3">
+        <div>
+          <span class="font-mono text-xs text-wsj-muted mr-2">#2</span>
+          <span class="text-xs uppercase tracking-wider text-wsj-muted mr-3">verbatim</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span>
+        </div>
+        <div class="font-mono text-xs text-wsj-muted">Windows: 466, 465, 76 &middot; 34.6s</div>
+      </div>
+      <h3 class="font-bold text-sm mb-2">What did the astronauts describe seeing on the lunar surface? Quote their exact words about the color and texture.</h3>
+      <div class="mb-2"><span class="text-wsj-green text-xs">Found: gray</span><span class="text-wsj-red text-xs ml-2">Missing: chalky, basalt, Sun angle</span></div>
+      <blockquote class="text-sm leading-relaxed mt-3">Here’s a breakdown of what the astronauts described seeing on the lunar surface, based on the provided transcript:<br><br>*   **Color:** “very light-colored gray, light gray color, a halo around my own shadow, around the shadow of my helmet.” “ash-cocoa color.” “the blue color of my boots has completely disappeared now into this ash-cocoa color.”<br><br>*   **Texture:** “considerably darker in texture.” “It seems to be covering most of the lighter part of the boots *** very fine particles.”</blockquote>
+    </div>
+    <div class="bg-white border border-wsj-border rounded-lg p-5 mb-4 shadow-sm">
+      <div class="flex items-start justify-between mb-3">
+        <div>
+          <span class="font-mono text-xs text-wsj-muted mr-2">#3</span>
+          <span class="text-xs uppercase tracking-wider text-wsj-muted mr-3">verbatim</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span>
+        </div>
+        <div class="font-mono text-xs text-wsj-muted">Windows: 373, 502, 129 &middot; 32.8s</div>
+      </div>
+      <h3 class="font-bold text-sm mb-2">Quote verbatim the goodnight message from Houston near the end of the mission.</h3>
+      <div class="mb-2"><span class="text-wsj-red text-xs ml-2">Missing: good night, bed, crew status</span></div>
+      <blockquote class="text-sm leading-relaxed mt-3">“Goodnight Base, again. this is Houston. Go ahead.”</blockquote>
+    </div>
+    <div class="bg-white border border-wsj-border rounded-lg p-5 mb-4 shadow-sm">
+      <div class="flex items-start justify-between mb-3">
+        <div>
+          <span class="font-mono text-xs text-wsj-muted mr-2">#4</span>
+          <span class="text-xs uppercase tracking-wider text-wsj-muted mr-3">verbatim</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-green-100 text-wsj-green">GROUNDED</span>
+        </div>
+        <div class="font-mono text-xs text-wsj-muted">Windows: 673, 682, 493 &middot; 47.0s</div>
+      </div>
+      <h3 class="font-bold text-sm mb-2">What did the crew say about the chinch bugs? Quote the exact exchange from the transcript.</h3>
+      <div class="mb-2"><span class="text-wsj-green text-xs">Found: chinch bugs</span><span class="text-wsj-red text-xs ml-2">Missing: mower</span></div>
+      <blockquote class="text-sm leading-relaxed mt-3">Okay, let's extract the exact exchange about the chinch bugs from the transcript:<br><br>**CMP:** “Well, they’re sort of taciturn little fellows. They don’t say much; they just chomp away.”<br><br>**CC:** “Concur on that.”<br><br>Let me know if you’d like me to find any other specific quotes or information from the transcript!</blockquote>
+    </div>
+    <div class="bg-white border border-wsj-border rounded-lg p-5 mb-4 shadow-sm">
+      <div class="flex items-start justify-between mb-3">
+        <div>
+          <span class="font-mono text-xs text-wsj-muted mr-2">#5</span>
+          <span class="text-xs uppercase tracking-wider text-wsj-muted mr-3">verbatim</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span>
+        </div>
+        <div class="font-mono text-xs text-wsj-muted">Windows: 508, 505, 478 &middot; 74.5s</div>
+      </div>
+      <h3 class="font-bold text-sm mb-2">What was the astronauts' impression of the lunar soil when they collected core tube samples? Quote their exact words.</h3>
+      <div class="mb-2"><span class="text-wsj-green text-xs">Found: moist</span><span class="text-wsj-red text-xs ml-2">Missing: core tube, packed</span></div>
+      <blockquote class="text-sm leading-relaxed mt-3">Here’s the relevant excerpt from the transcript, quoting the astronauts’ impressions of the lunar soil:<br><br>“want to stay vertical, that they'd tend<br>to fall over on you even after pounding in that<br>far. Is that correct?”<br><br>“The ones that I saw back in the aft end of the<br>spacecraft appeared to be a good bit darker; of<br>course, viewed from the aft end, why, they did<br>have the Sun shining directly on them.<br>It seemed<br>as though the material had been baked somewhat and<br>also scattered in a radially outward di</blockquote>
+    </div>
+    <div class="bg-white border border-wsj-border rounded-lg p-5 mb-4 shadow-sm">
+      <div class="flex items-start justify-between mb-3">
+        <div>
+          <span class="font-mono text-xs text-wsj-muted mr-2">#6</span>
+          <span class="text-xs uppercase tracking-wider text-wsj-muted mr-3">factual</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span>
+        </div>
+        <div class="font-mono text-xs text-wsj-muted">Windows: 76, 704, 588 &middot; 45.2s</div>
+      </div>
+      <h3 class="font-bold text-sm mb-2">What news from Earth was read to the astronauts during the mission? Quote the specific stories mentioned.</h3>
+      <div class="mb-2"><span class="text-wsj-red text-xs ml-2">Missing: crime-free, Goddard, London, bookie</span></div>
+      <blockquote class="text-sm leading-relaxed mt-3">Okay, here’s a breakdown of the news stories read to the Apollo 11 astronauts during the mission, as transcribed from the provided text:<br><br>1.  **Soviet Moon Mission Failure:** “Britain's big Jodrell Bank radio telescope stopped receiving signals from the Soviet Union’s unmanned Moon shot at 5:49 EDT today. A spokesman said that it appeared the Luna 15 space ship “had gone beyond the Moon.””<br><br>2.  **Mars Mission Proposal:** “Vice President Spiro T. Agnew has called for putting a man on Mars by the </blockquote>
+    </div>
+    <div class="bg-white border border-wsj-border rounded-lg p-5 mb-4 shadow-sm">
+      <div class="flex items-start justify-between mb-3">
+        <div>
+          <span class="font-mono text-xs text-wsj-muted mr-2">#7</span>
+          <span class="text-xs uppercase tracking-wider text-wsj-muted mr-3">factual</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span>
+        </div>
+        <div class="font-mono text-xs text-wsj-muted">Windows: 69, 461, 74 &middot; 42.5s</div>
+      </div>
+      <h3 class="font-bold text-sm mb-2">What technical problems did the crew report during their EVA on the lunar surface?</h3>
+      <div class="mb-2"><span class="text-wsj-red text-xs ml-2">Missing: unfolded, unevenly, terrain</span></div>
+      <blockquote class="text-sm leading-relaxed mt-3">According to the transcript, the crew reported that the gas separators on the water were leaking at the junction between the food bag and the water filter.</blockquote>
+    </div>
+    <div class="bg-white border border-wsj-border rounded-lg p-5 mb-4 shadow-sm">
+      <div class="flex items-start justify-between mb-3">
+        <div>
+          <span class="font-mono text-xs text-wsj-muted mr-2">#8</span>
+          <span class="text-xs uppercase tracking-wider text-wsj-muted mr-3">interpretive</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-red-50 text-wsj-red">WEAK</span>
+        </div>
+        <div class="font-mono text-xs text-wsj-muted">Windows: 462, 616, 614 &middot; 41.6s</div>
+      </div>
+      <h3 class="font-bold text-sm mb-2">Describe the astronauts' closing remarks before splashdown. What did they thank people for?</h3>
+      <div class="mb-2"><span class="text-wsj-red text-xs ml-2">Missing: spacecraft, Saturn, Columbia, Eagle, God bless</span></div>
+      <blockquote class="text-sm leading-relaxed mt-3">Here’s a breakdown of the astronauts’ closing remarks before splashdown, based on the provided transcript:<br><br>**The Astronauts’ Closing Remarks:**<br><br>As the transcript ends, we hear Neil Armstrong and Buzz Aldrin speaking on the radio. Here’s what they said:<br><br>“Okay, Houston, Tranquility Base here. The overview and observations of the lunar surface are complete and we’re prepared to begin our ascent.”<br><br>“We’d like to take this opportunity to say that the U.S. President and the people of America are gr</blockquote>
+    </div>
+    <div class="bg-white border border-wsj-border rounded-lg p-5 mb-4 shadow-sm">
+      <div class="flex items-start justify-between mb-3">
+        <div>
+          <span class="font-mono text-xs text-wsj-muted mr-2">#9</span>
+          <span class="text-xs uppercase tracking-wider text-wsj-muted mr-3">factual</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-green-100 text-wsj-green">GROUNDED</span>
+        </div>
+        <div class="font-mono text-xs text-wsj-muted">Windows: 627, 462, 236 &middot; 42.2s</div>
+      </div>
+      <h3 class="font-bold text-sm mb-2">What was the crew's experience with the television broadcast from the lunar surface?</h3>
+      <div class="mb-2"><span class="text-wsj-green text-xs">Found: TV, camera</span><span class="text-wsj-red text-xs ml-2">Missing: focus, Earth</span></div>
+      <blockquote class="text-sm leading-relaxed mt-3">According to the transcript, the crew’s experience with the television broadcast from the lunar surface was overwhelmingly positive, with significant attention and coverage from around the world. Here’s a breakdown of the key points:<br><br>*   **Initial Observation:** Buzz Aldrin specifically noted a “very bright spot of light” and confirmed Neil Armstrong’s observation of its position.<br>*   **Sample Selection Context:** The crew believed the selection of samples for the container was influenced by th</blockquote>
+    </div>
+    <div class="bg-white border border-wsj-border rounded-lg p-5 mb-4 shadow-sm">
+      <div class="flex items-start justify-between mb-3">
+        <div>
+          <span class="font-mono text-xs text-wsj-muted mr-2">#10</span>
+          <span class="text-xs uppercase tracking-wider text-wsj-muted mr-3">factual</span>
+          <span class="inline-block px-2 py-0.5 rounded text-xs font-bold bg-green-100 text-wsj-green">GROUNDED</span>
+        </div>
+        <div class="font-mono text-xs text-wsj-muted">Windows: 638, 637, 627 &middot; 39.8s</div>
+      </div>
+      <h3 class="font-bold text-sm mb-2">How did the crew describe the process of collecting rock samples on the Moon?</h3>
+      <div class="mb-2"><span class="text-wsj-green text-xs">Found: rock, sample, crater, variety</span></div>
+      <blockquote class="text-sm leading-relaxed mt-3">According to the transcript, the crew described the process of collecting rock samples as follows:<br><br>1.  **Initial Sampling:** Neil initially started on the cut side of the LM where the TV camera was located and took samples from rocks about 20-20 feet north of the LM.<br>2.  **Exhaust Sweep:** He recognized that this area had been swept by the descent engine exhaust and moved to the southern side of the LM.<br>3.  **Around Crater:** From the southern side, he took samples around the elongate double cr</blockquote>
+    </div>
+
+  <div class="text-center text-xs text-wsj-muted border-t border-wsj-border pt-4 mt-8">
+    <a href="index.html" class="text-wsj-accent hover:underline">All Runs</a> &middot; Gaucho AI
+  </div>
+</div></body></html>
