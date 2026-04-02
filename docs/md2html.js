@@ -254,6 +254,9 @@ function renderApolloPage(run, idx) {
       : '';
     // Escape HTML in output
     const safeOutput = q.output.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    const expectedRaw = q.expected_verbatim || "";
+    const safeExpected = expectedRaw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+
     return `
     <div class="bg-white border border-wsj-border rounded-lg p-5 mb-4 shadow-sm">
       <div class="flex items-start justify-between mb-3">
@@ -265,8 +268,16 @@ function renderApolloPage(run, idx) {
         <div class="font-mono text-xs text-wsj-muted">Windows: ${q.routed_windows.join(", ")} &middot; ${(q.total_ms/1000).toFixed(1)}s</div>
       </div>
       <h3 class="font-bold text-sm mb-2">${q.query}</h3>
-      <div class="mb-2">${termsHtml}${missingHtml}</div>
-      <blockquote class="text-sm leading-relaxed mt-3">${safeOutput}</blockquote>
+      <div class="mb-3">${termsHtml}${missingHtml}</div>
+      ${safeExpected ? `
+      <div class="mb-4">
+        <div class="text-xs uppercase tracking-wider text-wsj-muted font-sans mb-1">Expected (from transcript)</div>
+        <div class="bg-wsj-highlight border border-yellow-200 rounded p-3 font-mono text-xs leading-relaxed text-wsj-text">${safeExpected}</div>
+      </div>` : ''}
+      <div>
+        <div class="text-xs uppercase tracking-wider text-wsj-muted font-sans mb-1">Model Output</div>
+        <blockquote class="text-sm leading-relaxed">${safeOutput}</blockquote>
+      </div>
     </div>`;
   }).join("")}
 
