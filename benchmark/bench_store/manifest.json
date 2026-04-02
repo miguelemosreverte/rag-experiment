@@ -1,0 +1,16 @@
+{
+  "version": 12,
+  "num_entries": 1779,
+  "num_windows": 15,
+  "num_tokens": 5011,
+  "entries_per_window": 8,
+  "crystal_layer": 30,
+  "window_size": 512,
+  "arch_config": {
+    "retrieval_layer": 29,
+    "query_head": 4,
+    "injection_layer": 30,
+    "inject_coefficient": 10.0
+  },
+  "has_residuals": true
+}
