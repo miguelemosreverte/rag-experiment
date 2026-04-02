@@ -1,7 +1,7 @@
 {
   "meta": {
     "platform": "macOS-26.3-arm64-arm-64bit",
-    "timestamp": "2026-04-02T09:05:24.970830",
+    "timestamp": "2026-04-02T09:38:00.568687",
     "model": "gemma-3-4b-it",
     "benchmark": "apollo11_unified"
   },
@@ -11,31 +11,31 @@
   },
   "summary": {
     "improved": {
-      "grounded": 6,
-      "total": 10,
-      "grounded_pct": 60.0,
-      "terms_found": 21,
-      "terms_expected": 38,
-      "terms_pct": 55.3,
-      "avg_query_ms": 19794.0
+      "grounded": 8,
+      "total": 15,
+      "grounded_pct": 53.3,
+      "terms_found": 26,
+      "terms_expected": 57,
+      "terms_pct": 45.6,
+      "avg_query_ms": 19056.0
     },
     "vanilla": {
-      "grounded": 5,
-      "total": 10,
-      "grounded_pct": 50.0,
-      "terms_found": 19,
-      "terms_expected": 38,
-      "terms_pct": 50.0,
-      "avg_query_ms": 18046.0
+      "grounded": 6,
+      "total": 15,
+      "grounded_pct": 40.0,
+      "terms_found": 21,
+      "terms_expected": 57,
+      "terms_pct": 36.8,
+      "avg_query_ms": 13877.0
     },
     "original": {
-      "grounded": 5,
-      "total": 10,
-      "grounded_pct": 50.0,
-      "terms_found": 17,
-      "terms_expected": 38,
-      "terms_pct": 44.7,
-      "avg_query_ms": 27579.0
+      "grounded": 8,
+      "total": 15,
+      "grounded_pct": 53.3,
+      "terms_found": 25,
+      "terms_expected": 57,
+      "terms_pct": 43.9,
+      "avg_query_ms": 23799.0
     }
   },
   "queries": [
@@ -51,7 +51,7 @@
       "results": {
         "improved": {
           "output": "Here\u2019s the verbatim quote from Houston to Columbia when Eagle landed at Tranquility Base, as it appears in the provided transcript:\n\n\u201c**Columbia, this is Houston. Update? Over.**\u201d",
-          "total_ms": 21269.0,
+          "total_ms": 20586.0,
           "windows": [
             389,
             487,
@@ -67,7 +67,7 @@
         },
         "vanilla": {
           "output": "Here\u2019s the verbatim quote from Houston to Columbia when Eagle landed at Tranquility Base, as found in the provided transcript:\n\n\u201cWe\u2019re reading 67/6, 332 about it going?\u201d",
-          "total_ms": 16993.0,
+          "total_ms": 13893.0,
           "windows": [
             389
           ],
@@ -81,7 +81,7 @@
         },
         "original": {
           "output": "Here\u2019s the verbatim quote from Houston to Columbia when Eagle landed at Tranquility Base, as extracted from the provided transcript:\n\n\u201cOkay. We've completed the uplink; the computer is yours. You can go BLOCK; however, we'd like you to hold off on the P52 option 1 align until after you've passed landing site 2; and we're requesting that you perform another P22 and attempt to find the I24 this pass. I've got some numbers for you when you're ready to copy. Over.\u201d",
-          "total_ms": 31244.0,
+          "total_ms": 26311.0,
           "terms_found": [
             "Tranquility",
             "Eagle",
@@ -105,7 +105,7 @@
       "results": {
         "improved": {
           "output": "Here\u2019s the exact quote from the astronaut describing the color of the lunar surface:\n\n\u201cAs I look around the area, the contrast, in general, is *** comes about completely by virtue of the shadow *** down Sun ... very light-colored gray, light gray color, a halo around my own shadow, around the shadow of my helmet. Then, as I look off across *** the contrast becomes strongest in that the surromlding color is still fairly light. As you look down into the Sun *** a larger amount of *** shadowed area is looking toward us. The general color of the *** surrounding *** the contrast is not as great.\u201d\n\nOther relevant quotes from the transcript:\n\n*   \u201cSurveying all the dusty area that we\u2019ve kicked up *** considerably darker in texture.\u201d\n*   \u201cNow, I\u2019ve kicked up one, _ld I imagine that this is *** Sur",
-          "total_ms": 20037.0,
+          "total_ms": 19137.0,
           "windows": [
             76,
             466,
@@ -123,7 +123,7 @@
         },
         "vanilla": {
           "output": "Here\u2019s a quote of the astronaut\u2019s description of the lunar surface color, based on the provided text:\n\n\u201cvery light-colored gray, light gray color, a halo around my own shadow, around the shadow of my helmet. Then, as I look off across *** the contrast becomes strongest in that the surromlding color is still fairly light. As you look down into the Sun *** a larger amount of *** shadowed area is looking toward us. The general color of the *** surrounding *** the contrast is not as great. Surveying all the dusty area that we\u2019ve kicked up *** considerably darker in texture.\u201d\n\n**Note:** The asterisks (*) indicate missing words, so the quote isn't entirely complete.",
-          "total_ms": 19538.0,
+          "total_ms": 14398.0,
           "windows": [
             466
           ],
@@ -139,7 +139,7 @@
         },
         "original": {
           "output": "Here\u2019s the astronaut\u2019s description of the lunar surface color, directly quoted from the text:\n\n\u201cAs I look around the area, the contrast, in general, is *** comes about completely by virtue of the shadow *** down Sun ... very light-colored gray, light gray color, a halo around my own shadow, around the shadow of my helmet. Then, as I look off across *** the contrast becomes strongest in that the surrounding color is still fairly light. As you look down into the Sun *** a larger amount of *** shadowed area is looking toward us. The general color of the *** surrounding *** the contrast is not as great.\u201d\n\nEssentially, they described a range of grays, with a halo effect from their shadows and a stronger contrast when looking towards the sun.",
-          "total_ms": 27360.0,
+          "total_ms": 24257.0,
           "terms_found": [
             "gray"
           ],
@@ -164,7 +164,7 @@
       "results": {
         "improved": {
           "output": "\u201cGood evening. I\u2019d like to discuss with you a few of the more symbolic aspects of the flight of our mission, Apollo 11. As we\u2019ve been discussing the events that have taken place in the past 2 or 3 days here on board our spacecraft, we\u2019ve come to the conclusion that this has been far more than three men on a voyage to the Moon; more, still, than the efforts of a government and industry team; more, even, than the efforts of one nation. We feel that this stands as a symbol of the insatiable curiosity of all mankind to explore the unknown. Nell\u2019s statement the other day upon first setting foot on the Moon states \u2018in the cause of peace.\u2019 And Mrs. Robert Goddard said today that her husband would have been so happy. \u201cHe wouldn\u2019t have shouted or anything. He would just have glowed.\u201d She added, \u201cTh",
-          "total_ms": 19809.0,
+          "total_ms": 19121.0,
           "windows": [
             678,
             686,
@@ -180,7 +180,7 @@
         },
         "vanilla": {
           "output": "\u201cThere\u2019s more moisture in the tunnel now than there has been at any previous time. Subjectively we have been unable to determine any change in humidity buildup in the tunnel. There appears to be no moisture anywhere else in the spacecraft. For example, the windows are not fogging or \u2013 and various other cool spots around the spacecraft \u2013 all of them appear to be completely dry.\u201d",
-          "total_ms": 19186.0,
+          "total_ms": 15012.0,
           "windows": [
             678
           ],
@@ -194,7 +194,7 @@
         },
         "original": {
           "output": "Here\u2019s the verbatim last goodnight message from Houston to the crew, as extracted from the provided text:\n\n\u201c01 06 28 0\u201d\n\n\u201cThere\u2019s more moisture in the tunnel now than there has been at Im3\u2019 previous time. Subjectively we have been unable to determine any change in - Im3\u2019 buildup in humidity. There appears to be no moisture anywhere else in the spacecraft. For example, the windows are not fogging or \u2013 and various other cool spots around the spacecraft \u2013 all of them appear to be completely dry.\u201d",
-          "total_ms": 27302.0,
+          "total_ms": 22938.0,
           "terms_found": [],
           "terms_missing": [
             "good night",
@@ -217,7 +217,7 @@
       "results": {
         "improved": {
           "output": "Here\u2019s the exact quote from the transcript about the chinch bugs:\n\n\u201cWell, they\u2019re sort of taciturn little fellows. They don\u2019t say much; they just chomp away.\u201d",
-          "total_ms": 20254.0,
+          "total_ms": 19399.0,
           "windows": [
             673,
             682,
@@ -234,7 +234,7 @@
         },
         "vanilla": {
           "output": "Here\u2019s the requested quote from the transcript:\n\n\u201cWell, they\u2019re sort of taciturn little fellows. They don\u2019t say much; they just chomp away.\u201d",
-          "total_ms": 18178.0,
+          "total_ms": 13903.0,
           "windows": [
             673
           ],
@@ -249,7 +249,7 @@
         },
         "original": {
           "output": "Here\u2019s the exact quote from the transcript about the chinch bugs:\n\n\u201cWell, they\u2019re sort of taciturn little fellows. They don\u2019t say much; they just chomp away.\u201d",
-          "total_ms": 28233.0,
+          "total_ms": 22841.0,
           "terms_found": [
             "chinch bugs",
             "taciturn"
@@ -273,7 +273,7 @@
       "results": {
         "improved": {
           "output": "Okay, let\u2019s extract the relevant information from the provided transcript regarding the astronauts\u2019 impression of the lunar soil from the core tube samples.\n\nHere\u2019s the quote from CDR Neil Armstrong:\n\n\u201cWell, I could do it like this, Owen. About all the struts are about equally stroked, and the height from the ground to the first step is about 3 feet or maybe 3 and 1/2 feet, huh?\u201d\n\n**Important Note:** This quote doesn't directly address the *soil* itself. It\u2019s about the mechanical operation of a device (likely a sampling tool).\n\n**However, the context of the conversation, particularly the subsequent discussion about the boxes being packed with samples, strongly suggests that the core tubes themselves contained the soil samples.**\n\nThe transcript also mentions:\n\n*   \u201cJust a couple more here,",
-          "total_ms": 19692.0,
+          "total_ms": 19440.0,
           "windows": [
             508,
             638,
@@ -290,7 +290,7 @@
         },
         "vanilla": {
           "output": "Here\u2019s the astronaut\u2019s impression of the lunar soil from the core tube samples, based on the provided text:\n\n\u201cThe material was quite well packed, a good bit darker, and it - The way it adhered to the core tube gave me the distinct impression of being moist.\u201d",
-          "total_ms": 18135.0,
+          "total_ms": 14076.0,
           "windows": [
             508
           ],
@@ -304,7 +304,7 @@
         },
         "original": {
           "output": "Okay, let\u2019s break down the provided transcript and answer your question about the astronauts\u2019 impression of the lunar soil.\n\n**The Relevant Quote:**\n\nThe key quote is from CDR Neil Armstrong: \u201cThey're all looking wet. Houston, were you able to record the documentary way where the two core tube samples were taken? Negative. I didn't get a stereopair are right in the vicinity. Neil.\u201d\n\n**Astronauts\u2019 Impression of the Lunar Soil:**\n\nBased on this exchange, the astronauts\u2019 immediate impression was that the lunar soil around the core tube samples was **wet**.  Armstrong specifically states, \u201cThey're all looking wet.\u201d\n\n**Additional Context from the Transcript:**\n\n*   CC (Columbia Control) notes, \u201cLooks wet.\u201d\n*   CDR (Commander) confirms, \u201cHouston, were you able to record the documentary way where",
-          "total_ms": 26707.0,
+          "total_ms": 22804.0,
           "terms_found": [
             "core tube"
           ],
@@ -329,7 +329,7 @@
       "results": {
         "improved": {
           "output": "Here\u2019s a breakdown of the news stories read to the astronauts, based on the provided text:\n\n*   **Mrs. Robert Goddard:** \u201cMrs. Robert Goddard said today that her husband would have been so happy. \u2018He wouldn\u2019t have shouted or anything. He would just have glowed.\u2019 She added, \u2018That was his dream, sending a rocket to the Moon.\u2019\u201d\n\n*   **London Bookie:** \u201cThe Italian police reported that Sunday night was the most crime-free night of the year. And in London, a boy who had the faith to bet $5 with a bookie that a man would reach the Moon before 1970 collected $2000. That\u2019s pretty good odds.\u201d",
-          "total_ms": 19351.0,
+          "total_ms": 18946.0,
           "windows": [
             589,
             76,
@@ -346,7 +346,7 @@
         },
         "vanilla": {
           "output": "Here are the news stories about Earth read to the astronauts, with the quoted sections:\n\n*   **Mrs. Robert Goddard:** \u201cShe wouldn't have shouted or anything. She would just have glowed.\u201d and \u201cThat was his dream, sending a rocket to the Moon.\u201d\n\n*   **The London Bookie:** \u201cAnd in London, a boy who had the faith to bet $5 with a bookie that a man would reach the Moon before 1970 collected $2h 000. That's pretty good odds.\u201d",
-          "total_ms": 18127.0,
+          "total_ms": 13758.0,
           "windows": [
             589
           ],
@@ -362,7 +362,7 @@
         },
         "original": {
           "output": "Here are the news stories about Mrs. Robert Goddard and the London bookie as read to the astronauts:\n\n*   **Mrs. Robert Goddard:** \u201cStates in the cause of peace.\u201d And Mrs. Robert Goddard said today that her husband would have been so happy. \u201cHe wouldn't have shouted or anything. He would just have glowed.\u201d She added, \u201cThat was his dream, sending a rocket to the Moon.\u201d\n\n*   **London Bookie:** \u201cAnd in London, a boy who had the faith to bet $5 with a bookie that a man would reach the Moon before 1970 collected $2000. That\u2019s pretty good odds.\u201d",
-          "total_ms": 26785.0,
+          "total_ms": 23358.0,
           "terms_found": [
             "Goddard",
             "London",
@@ -388,7 +388,7 @@
       "results": {
         "improved": {
           "output": "According to the transcript, the crew reported the following technical problems with the equipment:\n\n*   **Uneven unfolding:** The equipment unfolded unevenly.\n*   **Uneven terrain:** The terrain was not as level as desired.\n*   **Touching corners:** Two corners touched the lunar surface to a depth of about three-quarters to a half an inch.\n*   **Triangular coating:** A small triangular coating was left on two of the corners, likely due to the corners digging into the surface.\n*   **Difficulty penetrating:** The second core tube was extremely difficult to drive in, requiring significant force (two hands on the hammer) and resulting in dents in the extension rod. It didn't penetrate straight and kept digging a hole instead of standing up straight.",
-          "total_ms": 15046.0,
+          "total_ms": 14313.0,
           "windows": [
             507
           ],
@@ -404,7 +404,7 @@
         },
         "vanilla": {
           "output": "According to the transcript, the crew reported the following technical problems with the equipment:\n\n*   **Uneven unfolding:** The equipment unfolded unevenly.\n*   **Uneven terrain:** The terrain was not as level as desired.\n*   **Touching corners:** Two corners touched the lunar surface to a depth of about three-quarters to a half an inch.\n*   **Triangular coating:** A small triangular coating was left on two of the corners, likely due to the corners digging into the surface.\n*   **Difficulty penetrating:** The second core tube was extremely difficult to drive in, requiring significant force (two hands on the hammer) and resulting in dents in the extension rod. It didn't penetrate straight and kept digging a hole instead of standing up straight.",
-          "total_ms": 19349.0,
+          "total_ms": 13516.0,
           "windows": [
             507
           ],
@@ -420,7 +420,7 @@
         },
         "original": {
           "output": "According to the transcript, the crew reported the following technical problems with the touch-down gear:\n\n*   **Uneven Unfolding:** The touch-down gear unfolded unevenly.\n*   **Corner Contact:** Two corners touched the lunar surface about three-quarters to a half an inch deep.\n*   **Triangular Coating:** A small triangular coating of material (approximately 3 inches) was left on two of the corners.\n*   **Difficulty Penetrating:** The gear had difficulty penetrating the lunar surface and would dig a hole but not fully penetrate, making it unstable and prone to falling over.",
-          "total_ms": 26403.0,
+          "total_ms": 23184.0,
           "terms_found": [
             "unfolded",
             "unevenly"
@@ -446,7 +446,7 @@
       "results": {
         "improved": {
           "output": "Here\u2019s the quote from the astronauts\u2019 farewell message:\n\n\u201cPeople, tonight, we give a special thank you, and to all the other people that are listening and watching tonight, God bless you. Good night from Apollo 11.\u201d",
-          "total_ms": 20691.0,
+          "total_ms": 19022.0,
           "windows": [
             688,
             462,
@@ -464,7 +464,7 @@
         },
         "vanilla": {
           "output": "\u201cPeople, tonight, we give a special thank you, and to all the other people that are listening and watching tonight, God bless you. Good night from Apollo 11.\u201d",
-          "total_ms": 17263.0,
+          "total_ms": 13577.0,
           "windows": [
             688
           ],
@@ -480,7 +480,7 @@
         },
         "original": {
           "output": "Okay, here's a breakdown of the transcript, organized for clarity and highlighting key information:\n\n**Tape 114/5 \u2013 Initial Communications & Stowage**\n\n*   **07 09 43 52 - 07 09 47 48:**  Initial greetings and a request from Apollo 11 to crank up the PTC (Panoramic Telescope Capability) for a TV broadcast.\n*   **07 09 47 57 - 07 09 48 10:**  Houston confirms the PTC can be cranked up.  A comment about the \"mighty fine TV presentation.\"\n*   **07 09 48 10 - 07 09 53 27:**  A simple \u201cThank you.\u201d\n*   **07 09 53 27 - 07 09 53 33:** Houston announces they are \u201cgetting off the window now.\u201d\n*   **07 09 53 36 - 07 09 56 53:** Houston requests a flight plan update and entry photography information.  Recommendations are given for exposure settings (f/1 at 1/250, 6 frames per second, focus at 7 feet f",
-          "total_ms": 26366.0,
+          "total_ms": 24407.0,
           "terms_found": [],
           "terms_missing": [
             "Saturn",
@@ -506,7 +506,7 @@
       "results": {
         "improved": {
           "output": "Here\u2019s a breakdown of what happened with the television camera on the lunar surface, as relayed in the provided transcript:\n\n**The Setup:**\n\n*   Apollo 11 was using a camera to zoom in on the lunar surface, aiming for the highest possible magnification.\n*   Houston was monitoring the feed and describing what they were seeing.\n\n**What They Saw:**\n\n*   **Earth:** The camera showed a view of Earth, appearing as a \u201clittle more than a half Earth\u201d to the left of the LM (Lunar Module).\n*   **North America:** They could see North America, including Alaska, the United States, Canada, Mexico, and Central America, on the northern half of the top of the screen.\n*   **Bright Spot:** Buzz Aldrin (one of the astronauts) observed a \u201cvery bright spot of light\u201d on the surface.  Charlie Duke (the CAPCOM \u2013 th",
-          "total_ms": 21922.0,
+          "total_ms": 19523.0,
           "windows": [
             128,
             76,
@@ -525,7 +525,7 @@
         },
         "vanilla": {
           "output": "Here\u2019s the relevant quote from the transcript:\n\n\u201cThe definition is pretty good on our monitor here. The color is not too ..., at least on this set. Could you describe what you\u2019re looking at? Over.\u201d\n\nHouston then asks for a description of what Charlie is seeing.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
-          "total_ms": 16387.0,
+          "total_ms": 13675.0,
           "windows": [
             128
           ],
@@ -541,7 +541,7 @@
         },
         "original": {
           "output": "Here\u2019s a breakdown of what happened with the television camera on the lunar surface, as relayed in the provided transcript:\n\n**The Setup:**\n\n*   Apollo 11 was using a camera to zoom in on the lunar surface, aiming for the highest possible magnification.\n*   Houston was monitoring the feed and describing what they were seeing.\n\n**What They Saw:**\n\n*   **Earth:** The camera showed a view of Earth, appearing as a \u201clittle more than a half Earth\u201d to the left of the LM (Lunar Module).\n*   **North America:** They could see North America, including Alaska, the United States, Canada, Mexico, and Central America, on the northern half of the top of the screen.\n*   **Bright Spot:** Buzz Aldrin (one of the astronauts) observed a \u201cvery bright spot of light\u201d on the surface.  Charlie Duke (the CAPCOM \u2013 th",
-          "total_ms": 27646.0,
+          "total_ms": 24565.0,
           "terms_found": [
             "camera",
             "Earth"
@@ -569,7 +569,7 @@
       "results": {
         "improved": {
           "output": "According to the transcript, Neil described collecting rock samples around the elongate double crater by:\n\n*   Starting on the cut side of the LM that the TV camera was on.\n*   Taking 15-20 feet north of the LM.\n*   Crossing over to the southern side of the LM.\n*   Taking a number of samples from the area around the elongate double crater and several beyond it.\n*   Trying to collect as many different types of rock as he could see by eye in the short time available.",
-          "total_ms": 19874.0,
+          "total_ms": 16864.0,
           "windows": [
             627,
             532
@@ -587,7 +587,7 @@
         },
         "vanilla": {
           "output": "According to Neil, he initially started collecting samples from the cut side of the LM (Lunar Module) where the TV camera was located. He then moved to the southern side of the LM to avoid the exhaust from the descent engine and collected samples around the elongate double crater and several others beyond it, trying to gather as many different types of rock as possible within the limited time available.",
-          "total_ms": 17306.0,
+          "total_ms": 13458.0,
           "windows": [
             627
           ],
@@ -604,7 +604,7 @@
         },
         "original": {
           "output": "Neil described collecting rock samples around the elongate double crater by:\n\n*   Taking a number of samples from the area around the crater and several beyond it.\n*   Trying to take as many different types of rock types as he could see by eye in the short time available.\n*   He noted he collected samples from the cut side of the LM that the TV camera was on, about 20-15 to 20 feet north of the TV.\n*   He also crossed over to the southern side of the LM to take samples from the area around the elongate double crater.",
-          "total_ms": 27746.0,
+          "total_ms": 23671.0,
           "terms_found": [
             "rock",
             "sample",
@@ -614,6 +614,292 @@
             "variety",
             "exhaust"
           ],
+          "grounded": true
+        }
+      }
+    },
+    {
+      "query": "What was said at mission time 04 06 46 04? Quote the exact words from the transcript at that timestamp.",
+      "category": "timestamp",
+      "verify_terms": [
+        "Eagle",
+        "Tranquility",
+        "landed",
+        "copy you down"
+      ],
+      "expected_verbatim": "CC\n\nWe copy you down,\n\nCDR\n(TRA_Q)\n\nHouston,\n\nCDR\n\nTHE EAGLE\n\nEagle.",
+      "results": {
+        "improved": {
+          "output": "The exact words from the transcript at mission time 04 06 46 04 were:\n\n\u201cMust be Okay.\u201d",
+          "total_ms": 19205.0,
+          "windows": [
+            76,
+            382,
+            704
+          ],
+          "terms_found": [],
+          "terms_missing": [
+            "Eagle",
+            "Tranquility",
+            "landed",
+            "copy you down"
+          ],
+          "grounded": false
+        },
+        "vanilla": {
+          "output": "At mission time 04:06:46:04, the transcript reads: \u201cOkay. We\u2019re all listening.\u201d",
+          "total_ms": 13494.0,
+          "windows": [
+            76
+          ],
+          "terms_found": [],
+          "terms_missing": [
+            "Eagle",
+            "Tranquility",
+            "landed",
+            "copy you down"
+          ],
+          "grounded": false
+        },
+        "original": {
+          "output": "The exact words from the transcript at mission time 04 06 46 04 are: \u201ca phone call from San Francisco just before he boarded a plane to fly out to meet you.\u201d",
+          "total_ms": 23279.0,
+          "terms_found": [],
+          "terms_missing": [
+            "Eagle",
+            "Tranquility",
+            "landed",
+            "copy you down"
+          ],
+          "grounded": false
+        }
+      }
+    },
+    {
+      "query": "What happened at timestamp 04 13 23 38? What did the Commander report about the ladder and the surface?",
+      "category": "timestamp",
+      "verify_terms": [
+        "foot of the ladder",
+        "footpads",
+        "depressed",
+        "powder",
+        "fine grained"
+      ],
+      "expected_verbatim": "04 13 23 38\n\nCDR\n(TRANQ)\n\nI'm at the foot of the ladder.\nThe I2! footpads\nare only depressed in the surface about I or\n2 inches, although the surface appears to be very,\nvery fine grained, as you get close te it.\nIt's\nalmost like a powder.\nDown-there,\nit's very fine.",
+      "results": {
+        "improved": {
+          "output": "At timestamp 04 13 23 38, the Commander reported that \u201cOur monitor shows pretty good, clear pictures from this angle. I already found the 90-degree bracket.\u201d He was observing the view through the window via the ACA system.",
+          "total_ms": 19704.0,
+          "windows": [
+            196,
+            382,
+            614
+          ],
+          "terms_found": [],
+          "terms_missing": [
+            "foot of the ladder",
+            "footpads",
+            "depressed",
+            "powder",
+            "fine grained"
+          ],
+          "grounded": false
+        },
+        "vanilla": {
+          "output": "At timestamp 04 13 23 38, the Commander (CDR) reported that \u201cOur monitor shows pretty good, clear pictures from this angle.\u201d He had already found the 90-degree bracket and was commenting on the quality of the images being received.\n",
+          "total_ms": 13578.0,
+          "windows": [
+            196
+          ],
+          "terms_found": [],
+          "terms_missing": [
+            "foot of the ladder",
+            "footpads",
+            "depressed",
+            "powder",
+            "fine grained"
+          ],
+          "grounded": false
+        },
+        "original": {
+          "output": "At timestamp 04 13 23 38, the Commander (CDR) reported the following about the ladder and the surface:\n\n*   The I2 footpads were only depressed about 1 or 2 inches into the surface.\n*   The surface appeared very fine-grained, almost like a powder.\n*   When he got close to the surface, it felt like powdered charcoal, adhering to his boots.\n*   He was only able to step into the surface a small fraction of an inch, maybe an eighth of an inch.\n*   He could see the footprints of his boots and the treads in the fine, sandy particles.",
+          "total_ms": 23813.0,
+          "terms_found": [
+            "footpads",
+            "depressed",
+            "powder"
+          ],
+          "terms_missing": [
+            "foot of the ladder",
+            "fine grained"
+          ],
+          "grounded": true
+        }
+      }
+    },
+    {
+      "query": "At mission time 04 14 16 09, who called the astronauts and what was announced?",
+      "category": "timestamp",
+      "verify_terms": [
+        "President",
+        "United States",
+        "office",
+        "few words"
+      ],
+      "expected_verbatim": "Roger.\nWe'd like to get both of you in the field\nof view of the camera for a minute.\n\n04 14 16 09\n\nCC\n\nNeil and Buzz, the President of the U_oited States\nis in his office now and would like to say a\nfew words to you.\nOver.",
+      "results": {
+        "improved": {
+          "output": "Okay, let's break down the transcript to answer your question.\n\n**Who called the astronauts and what was announced?**\n\nThe President of the United States, Richard M. Nixon, called the astronauts (Neil and Buzz Aldrin) at mission time 04 14 16 23.\n\nHe announced that he was speaking to them from the Oval Room at the White House and that this was \u201cthe most historic telephone clipping of words and phrases ever made.\u201d He expressed pride in their accomplishments and called it \u201cthe proudest day of our lives.\u201d\n\n**The asterisked sections** indicate that the President\u2019s message was being broadcast on the news.\n\nLet me know if you\u2019d like me to analyze any other part of the transcript!",
+          "total_ms": 20204.0,
+          "windows": [
+            462,
+            76,
+            77
+          ],
+          "terms_found": [
+            "President",
+            "United States"
+          ],
+          "terms_missing": [
+            "office",
+            "few words"
+          ],
+          "grounded": true
+        },
+        "vanilla": {
+          "output": "Okay, let's break down the text to find the answer to your question.\n\nAccording to the text, at mission time 04 14 16 09, **CDR (Command and Data Recorder)** called the astronauts. \n\nWhat was announced is: **\"Okay. We're all listening.\"**\n\n",
+          "total_ms": 13928.0,
+          "windows": [
+            76
+          ],
+          "terms_found": [],
+          "terms_missing": [
+            "President",
+            "United States",
+            "office",
+            "few words"
+          ],
+          "grounded": false
+        },
+        "original": {
+          "output": "At mission time 04 14 16 09, Bruce called the astronauts and announced the following:\n\n*   \u201cWe're all listening.\u201d\n*   \u201cOkay.\u201d\n*   \u201cRoger.\u201d\n*   \u201cRoger.\u201d\n*   \u201cAnd I understand he was down there and really enjoyed watching the launch. We all think it was pretty magnificent, and you all are doing a great job up there.\u201d\n*   \u201cThank you.\u201d\n\nThe tape also includes a quote from the astronauts themselves, Neil Armstrong, stating, \u201cWhen I consider the heavens, the work of Thy fingers, the moon and the stars which Thou hast ordained_ what is man that Thou art mindful of him.\u201d",
+          "total_ms": 23717.0,
+          "terms_found": [],
+          "terms_missing": [
+            "President",
+            "United States",
+            "office",
+            "few words"
+          ],
+          "grounded": false
+        }
+      }
+    },
+    {
+      "query": "What did Buzz say at timestamp 07 05 39 34 about his lawn? Quote the exact exchange.",
+      "category": "timestamp",
+      "verify_terms": [
+        "lawn",
+        "cut",
+        "mower",
+        "Buzz"
+      ],
+      "expected_verbatim": "112/3\n578\n\n07 05 39 34\n\n_MI_\n\nThat was Nell.\nThis is Buzz, here.\nI wi:;h\nwe could find out when the last time my lawn\nwas cut.\nOver.",
+      "results": {
+        "improved": {
+          "output": "Here\u2019s the exact exchange from timestamp 07 05 39 34:\n\n\u201cThat was Nell. This is Buzz, here. I wish we could find out when the last time my lawn was cut. Over.\u201d",
+          "total_ms": 20374.0,
+          "windows": [
+            672,
+            76,
+            202
+          ],
+          "terms_found": [
+            "lawn",
+            "cut",
+            "Buzz"
+          ],
+          "terms_missing": [
+            "mower"
+          ],
+          "grounded": true
+        },
+        "vanilla": {
+          "output": "The provided text does not contain any information about Buzz's lawn. It focuses on a conversation between Apollo 11 and Houston during a space mission.",
+          "total_ms": 13537.0,
+          "windows": [
+            202
+          ],
+          "terms_found": [
+            "lawn",
+            "Buzz"
+          ],
+          "terms_missing": [
+            "cut",
+            "mower"
+          ],
+          "grounded": true
+        },
+        "original": {
+          "output": "\u201cThat was Nell. This is Buzz, here. I wish we could find out when the last time my lawn was cut. Over.\u201d",
+          "total_ms": 23617.0,
+          "terms_found": [
+            "lawn",
+            "cut",
+            "Buzz"
+          ],
+          "terms_missing": [
+            "mower"
+          ],
+          "grounded": true
+        }
+      }
+    },
+    {
+      "query": "What communication happened at timestamp 08 03 15 03 near the end of the mission? Who was talking to Apollo 11?",
+      "category": "timestamp",
+      "verify_terms": [
+        "Hornet",
+        "Apollo 11"
+      ],
+      "expected_verbatim": "15.\n\n11.\n\nThis\n\nis Hornet.\n\nHornet.\n\nThis is Apollo 11 read:ng you\nOur position 1330, 16_ 15.",
+      "results": {
+        "improved": {
+          "output": "At timestamp 08 03 15 03 near the end of the mission, Neil Armstrong (CDR Tranquility) was communicating with Houston. He was requesting the fixed portion of the ascent pad to be loaded in for a specific purpose.\n\n\n",
+          "total_ms": 20003.0,
+          "windows": [
+            614,
+            527,
+            468
+          ],
+          "terms_found": [],
+          "terms_missing": [
+            "Hornet",
+            "Apollo 11"
+          ],
+          "grounded": false
+        },
+        "vanilla": {
+          "output": "At timestamp 04 14 38 27, Houston contacted Columbia. The message included \"LOS will be aw, !11 19 31; AOS, 1!2 05 4_. Over.\"\n\nThere is no communication recorded at timestamp 08 03 15 03 near the end of the mission.",
+          "total_ms": 14359.0,
+          "windows": [
+            468
+          ],
+          "terms_found": [],
+          "terms_missing": [
+            "Hornet",
+            "Apollo 11"
+          ],
+          "grounded": false
+        },
+        "original": {
+          "output": "Okay, let's break down the communication happening at timestamp 08 03 15 03 near the end of the mission, based on the provided transcript excerpts.\n\n**Who was talking to Apollo 11?**\n\nThe communication at 08 03 15 03 was between **President Nixon** and the crew of Apollo 11 (LMP - Neil Armstrong, and CMP - Buzz Aldrin).\n\n**What communication happened?**\n\nThe excerpt describes the following:\n\n*   **President Nixon** is preparing to travel to the recovery ship *Hornet* to witness the splashdown.\n*   He is speaking with **LMP (Neil Armstrong)**, likely to get a final update on the situation and confirm that everything is proceeding as planned.\n*   **LMP** is reporting that they haven't detected any moisture in the spacecraft and that the hydrogen filters are functioning, though one is experie",
+          "total_ms": 24224.0,
+          "terms_found": [
+            "Hornet",
+            "Apollo 11"
+          ],
+          "terms_missing": [],
           "grounded": true
         }
       }

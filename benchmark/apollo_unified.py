@@ -92,6 +92,37 @@ QUERIES = [
         "verify": ["rock", "sample", "crater", "variety", "exhaust"],
         "grep_terms": ["elongate double crater", "different types of rock", "exhaust"],
     },
+    # ── Timestamp-based queries (only a transcript expert would know) ──
+    {
+        "query": "What was said at mission time 04 06 46 04? Quote the exact words from the transcript at that timestamp.",
+        "category": "timestamp",
+        "verify": ["Eagle", "Tranquility", "landed", "copy you down"],
+        "grep_terms": ["copy you down", "Eagle", "Tranquility Base"],
+    },
+    {
+        "query": "What happened at timestamp 04 13 23 38? What did the Commander report about the ladder and the surface?",
+        "category": "timestamp",
+        "verify": ["foot of the ladder", "footpads", "depressed", "powder", "fine grained"],
+        "grep_terms": ["foot of the ladder", "footpads", "depressed", "powder"],
+    },
+    {
+        "query": "At mission time 04 14 16 09, who called the astronauts and what was announced?",
+        "category": "timestamp",
+        "verify": ["President", "United States", "office", "few words"],
+        "grep_terms": ["President of the United States", "office", "few words"],
+    },
+    {
+        "query": "What did Buzz say at timestamp 07 05 39 34 about his lawn? Quote the exact exchange.",
+        "category": "timestamp",
+        "verify": ["lawn", "cut", "mower", "Buzz"],
+        "grep_terms": ["lawn was cut", "new mower", "Buzz"],
+    },
+    {
+        "query": "What communication happened at timestamp 08 03 15 03 near the end of the mission? Who was talking to Apollo 11?",
+        "category": "timestamp",
+        "verify": ["Hornet", "Apollo 11"],
+        "grep_terms": ["Hornet", "Apollo 11"],
+    },
 ]
 
 
