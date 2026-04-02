@@ -289,6 +289,14 @@ def run_benchmark(model_path: str) -> str:
         expansion_ids = KnowledgeStore._expand_query(qdef["query"], tokenizer, kv_gen)
         qm.expansion_ms = (time.monotonic() - t0) * 1000
 
+        # Log expansion words for debugging
+        sw = store._build_stopword_ids(tokenizer)
+        exp_words = sorted({tokenizer.decode([t]).strip().lower()
+                           for t in expansion_ids
+                           if store.idf.get(t, 0.0) > 0 and t not in sw
+                           and len(tokenizer.decode([t]).strip()) >= 2})
+        print(f"    Expansion: {exp_words[:10]}", file=sys.stderr)
+
         # Route
         t_route = time.monotonic()
         window_ids = store.route_top_k(

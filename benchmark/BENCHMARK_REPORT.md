@@ -1,6 +1,6 @@
 # Dynamic Skill Append Benchmark Report
 
-**Generated:** 2026-04-02T06:51:06.132700
+**Generated:** 2026-04-02T07:14:37.559741
 **Platform:** macOS-26.3-arm64-arm-64bit
 **Processor:** arm
 **Python:** 3.12.13
@@ -11,24 +11,24 @@
 
 | Metric | Value |
 |--------|-------|
-| Load time | 3.4s |
-| RSS after load | 5177 MB |
-| Base state init | 0.14s |
+| Load time | 3.3s |
+| RSS after load | 5741 MB |
+| Base state init | 0.15s |
 
 ## 2. Skill Append Performance
 
 | # | Skill | Tokens | Windows | Entries | Time (s) | RSS Delta (MB) | Metal Peak (MB) |
 |---|-------|--------|---------|---------|----------|----------------|-----------------|
-| 1 | weather_api | 331 | 1 | 187 | 1.46 | +0.0 | 11253 |
-| 2 | sql_query | 383 | 1 | 189 | 1.48 | +0.0 | 11289 |
-| 3 | image_generation | 442 | 1 | 194 | 1.56 | +0.0 | 11335 |
-| 4 | calendar | 462 | 1 | 177 | 1.68 | +0.0 | 11345 |
-| 5 | file_converter | 515 | 2 | 173 | 2.28 | +0.0 | 11357 |
-| 6 | git_operations | 485 | 1 | 163 | 1.70 | +0.0 | 11361 |
-| 7 | email_sender | 551 | 2 | 184 | 2.33 | +0.0 | 11357 |
-| 8 | notification_service | 567 | 2 | 176 | 2.33 | +0.0 | 11357 |
-| 9 | data_visualization | 625 | 2 | 171 | 2.49 | +0.0 | 11357 |
-| 10 | deployment_pipeline | 650 | 2 | 165 | 2.63 | +0.0 | 11357 |
+| 1 | weather_api | 331 | 1 | 187 | 1.50 | +0.0 | 11253 |
+| 2 | sql_query | 383 | 1 | 189 | 1.53 | +0.0 | 11289 |
+| 3 | image_generation | 442 | 1 | 194 | 1.65 | +0.0 | 11335 |
+| 4 | calendar | 462 | 1 | 177 | 1.73 | +0.0 | 11345 |
+| 5 | file_converter | 515 | 2 | 173 | 2.38 | +0.0 | 11357 |
+| 6 | git_operations | 485 | 1 | 163 | 1.71 | +0.0 | 11361 |
+| 7 | email_sender | 551 | 2 | 184 | 2.34 | +0.0 | 11357 |
+| 8 | notification_service | 567 | 2 | 176 | 2.37 | +0.0 | 11357 |
+| 9 | data_visualization | 625 | 2 | 171 | 2.54 | +0.0 | 11357 |
+| 10 | deployment_pipeline | 650 | 2 | 165 | 2.65 | +0.0 | 11357 |
 
 ### Append Summary
 
@@ -38,15 +38,15 @@
 | Total tokens | 5,011 |
 | Total windows | 15 |
 | Total entries | 1,779 |
-| Total append time | 19.9s |
-| Avg time per skill | 1.99s |
-| Avg tokens/second | 252 |
+| Total append time | 20.4s |
+| Avg time per skill | 2.04s |
+| Avg tokens/second | 246 |
 
 ## 3. Query Routing Accuracy
 
-**Overall accuracy: 8/10 (80%)**
+**Overall accuracy: 9/10 (90%)**
 
-- **Easy:** 5/6 (83%)
+- **Easy:** 6/6 (100%)
 - **Medium:** 2/2 (100%)
 - **Hard:** 1/2 (50%)
 
@@ -54,47 +54,40 @@
 
 | # | Difficulty | Query | Expected | Got | Correct | Total (ms) |
 |---|-----------|-------|----------|-----|---------|------------|
-| 1 | easy | What's the temperature in Tokyo right now? | weather_api | calendar | **NO** | 6976 |
-| 2 | easy | Show me all users who signed up last week from the... | sql_query | sql_query | yes | 6731 |
-| 3 | easy | Generate a watercolor painting of a mountain lands... | image_generation | image_generation | yes | 6708 |
-| 4 | easy | Schedule a meeting with the design team next Thurs... | calendar | calendar | yes | 6985 |
-| 5 | easy | Convert this DOCX report to PDF with A4 page size | file_converter | file_converter | yes | 7122 |
-| 6 | easy | Create a new git branch called feature/payments an... | git_operations | git_operations | yes | 6892 |
-| 7 | medium | Send an email to the client with the monthly repor... | email_sender | email_sender | yes | 7165 |
-| 8 | medium | Create a bar chart showing revenue by month from t... | data_visualization | data_visualization | yes | 7215 |
-| 9 | hard | Send a notification to the team that the deploy su... | notification_service | deployment_pipeline | **NO** | 6867 |
-| 10 | hard | After deploying to staging, email the QA team and ... | deployment_pipeline | deployment_pipeline | yes | 6934 |
+| 1 | easy | What's the temperature in Tokyo right now? | weather_api | weather_api | yes | 6460 |
+| 2 | easy | Show me all users who signed up last week from the... | sql_query | sql_query | yes | 7261 |
+| 3 | easy | Generate a watercolor painting of a mountain lands... | image_generation | image_generation | yes | 7322 |
+| 4 | easy | Schedule a meeting with the design team next Thurs... | calendar | calendar | yes | 7295 |
+| 5 | easy | Convert this DOCX report to PDF with A4 page size | file_converter | file_converter | yes | 7348 |
+| 6 | easy | Create a new git branch called feature/payments an... | git_operations | git_operations | yes | 6950 |
+| 7 | medium | Send an email to the client with the monthly repor... | email_sender | email_sender | yes | 7028 |
+| 8 | medium | Create a bar chart showing revenue by month from t... | data_visualization | data_visualization | yes | 7014 |
+| 9 | hard | Send a notification to the team that the deploy su... | notification_service | notification_service | yes | 7148 |
+| 10 | hard | After deploying to staging, email the QA team and ... | deployment_pipeline | notification_service | **NO** | 7473 |
 
 ### Query Timing Breakdown
 
 | # | Expansion (ms) | Route (ms) | Prefill (ms) | Generate (ms) | Total (ms) |
 |---|---------------|------------|-------------|--------------|------------|
-| 1 | 1126 | 0 | 1818 | 4027 | 6976 |
-| 2 | 1143 | 0 | 1790 | 3795 | 6731 |
-| 3 | 1136 | 0 | 1738 | 3833 | 6708 |
-| 4 | 1159 | 0 | 1907 | 3917 | 6985 |
-| 5 | 1134 | 0 | 2097 | 3888 | 7122 |
-| 6 | 1157 | 0 | 1853 | 3880 | 6892 |
-| 7 | 1187 | 0 | 2040 | 3936 | 7165 |
-| 8 | 1142 | 0 | 2176 | 3895 | 7215 |
-| 9 | 1140 | 0 | 1915 | 3810 | 6867 |
-| 10 | 1148 | 1 | 1902 | 3881 | 6934 |
+| 1 | 1127 | 3 | 1438 | 3883 | 6460 |
+| 2 | 1133 | 0 | 2060 | 4061 | 7261 |
+| 3 | 1156 | 0 | 2206 | 3955 | 7322 |
+| 4 | 1135 | 0 | 2095 | 4059 | 7295 |
+| 5 | 1129 | 0 | 2354 | 3860 | 7348 |
+| 6 | 1188 | 0 | 1957 | 3799 | 6950 |
+| 7 | 1124 | 0 | 2104 | 3794 | 7028 |
+| 8 | 1128 | 0 | 2062 | 3819 | 7014 |
+| 9 | 1172 | 0 | 2193 | 3777 | 7148 |
+| 10 | 1153 | 0 | 2458 | 3857 | 7473 |
 
-**Average query time:** 6959ms (routing: 0ms)
+**Average query time:** 7130ms (routing: 0ms)
 
 ### Misrouted Queries
 
-**Query:** What's the temperature in Tokyo right now?
-- Expected: `weather_api`, Got: `calendar`
-- Routed to windows: [3, 9]
-- Output: _I am sorry, I cannot provide you with the current temperature in Tokyo. I am a language model and do not have access to real-time weather data. 
-
-To f..._
-
-**Query:** Send a notification to the team that the deploy succeeded and include a link
-- Expected: `notification_service`, Got: `deployment_pipeline`
-- Routed to windows: [13, 9, 12]
-- Output: _Okay, here's a Python implementation of the Deployment Pipeline Tool, incorporating the described functionality, parameters, deployment flow, canary d..._
+**Query:** After deploying to staging, email the QA team and send a Slack alert to engineering
+- Expected: `deployment_pipeline`, Got: `notification_service`
+- Routed to windows: [9, 13]
+- Output: _Okay, this is a solid foundation for a notification service tool. Here's a breakdown of how we can expand this into a more robust and usable design, i..._
 
 ## 4. Store Statistics
 
@@ -109,14 +102,15 @@ To f..._
 ## 5. Sample Query Outputs
 
 ### Query 1: What's the temperature in Tokyo right now?
-- **Routed to:** `calendar` (windows [3, 9])
+- **Routed to:** `weather_api` (windows [0, 3])
 - **Output:**
-> I am sorry, I cannot provide you with the current temperature in Tokyo. I am a language model and do not have access to real-time weather data. 
-
-To find the current temperature in Tokyo, you can use 
+> ```tool_code
+weather = get_weather(city="Tokyo")
+print(weather)
+```
 
 ### Query 2: Show me all users who signed up last week from the database
-- **Routed to:** `sql_query` (windows [1, 11, 2])
+- **Routed to:** `sql_query` (windows [1, 9, 11])
 - **Output:**
 > ```python
 import os
@@ -133,7 +127,7 @@ DATABASE_URL = os.environ.get("DATABASE_URL")
 if not DATABASE_URL
 
 ### Query 3: Generate a watercolor painting of a mountain landscape at sunrise
-- **Routed to:** `image_generation` (windows [2, 9])
+- **Routed to:** `image_generation` (windows [2])
 - **Output:**
 > ```python
 import uuid
@@ -144,7 +138,7 @@ import time
 def generate_image(prompt, negative_prompt="blurry, low quality, distorted",
 
 ### Query 4: Schedule a meeting with the design team next Thursday at 2pm
-- **Routed to:** `calendar` (windows [3, 1, 2])
+- **Routed to:** `calendar` (windows [3])
 - **Output:**
 > Okay, let's schedule that meeting.  Here's the command to do that, incorporating the timezone information:
 
@@ -165,7 +159,7 @@ def convert_file(input_path, output_format, output_path=None, options=None):
         input_path (str):
 
 ### Query 6: Create a new git branch called feature/payments and switch to it
-- **Routed to:** `git_operations` (windows [6, 13, 4])
+- **Routed to:** `git_operations` (windows [6, 13])
 - **Output:**
 > ```python
 def git_op(repo_path, operation, **kwargs):
@@ -174,7 +168,7 @@ def git_op(repo_path, operation, **kwargs):
     Supports status checks, commits, branching, merging, and history in
 
 ### Query 7: Send an email to the client with the monthly report PDF attached
-- **Routed to:** `email_sender` (windows [7, 4, 9])
+- **Routed to:** `email_sender` (windows [7])
 - **Output:**
 > ```python
 import os
@@ -186,7 +180,7 @@ from email import encoders
 from jinja2 impor
 
 ### Query 8: Create a bar chart showing revenue by month from the sales database
-- **Routed to:** `data_visualization` (windows [11, 1, 12])
+- **Routed to:** `data_visualization` (windows [11])
 - **Output:**
 > ```python
 import pandas as pd
@@ -199,11 +193,15 @@ def visualize(data, chart_type, x, y, title=None, color=None, output_format="htm
     Crea
 
 ### Query 9: Send a notification to the team that the deploy succeeded and include a link
-- **Routed to:** `deployment_pipeline` (windows [13, 9, 12])
+- **Routed to:** `notification_service` (windows [9, 13])
 - **Output:**
-> Okay, here's a Python implementation of the Deployment Pipeline Tool, incorporating the described functionality, parameters, deployment flow, canary deployments, and pre-deployment checks.  I've focus
+> ```python
+notify(
+    channel="slack",
+    recipient="#engineering",
+    message="Deploy v2.3.1 completed successfully. All health checks passing.  Check out the details here: https://link-to-deployme
 
 ### Query 10: After deploying to staging, email the QA team and send a Slack alert to engineering
-- **Routed to:** `deployment_pipeline` (windows [13, 9, 1])
+- **Routed to:** `notification_service` (windows [9, 13])
 - **Output:**
-> Okay, this is a solid foundation for a deployment pipeline tool. Let's flesh this out into a more detailed Python implementation, incorporating the described features and considerations.  This will be
+> Okay, this is a solid foundation for a notification service tool. Here's a breakdown of how we can expand this into a more robust and usable design, incorporating best practices and addressing the not
