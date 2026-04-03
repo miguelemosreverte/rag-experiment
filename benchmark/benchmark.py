@@ -303,6 +303,14 @@ def run_benchmark(model_path: str) -> str:
                 qdef["query"], tokenizer, kv_gen, k=3
             )
             qm.route_ms = (time.monotonic() - t_route) * 1000
+        elif routing_method == "offline_cosine":
+            # Pure software routing — no model at query time
+            qm.expansion_ms = 0.0
+            t_route = time.monotonic()
+            window_ids = store.route_offline(
+                qdef["query"], tokenizer, k=3
+            )
+            qm.route_ms = (time.monotonic() - t_route) * 1000
         else:
             # TF-IDF + expansion routing
             expansion_ids = KnowledgeStore._expand_query(qdef["query"], tokenizer, kv_gen)

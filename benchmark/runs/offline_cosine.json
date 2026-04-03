@@ -1,0 +1,332 @@
+{
+  "meta": {
+    "platform": "macOS-26.3-arm64-arm-64bit",
+    "processor": "arm",
+    "python": "3.12.13",
+    "model": "/Users/miguel_lemos/Desktop/gemma-3-4b-it",
+    "timestamp": "2026-04-03T13:01:18.980272",
+    "routing_method": "offline_cosine",
+    "run_id": "2026-04-03T13-01-18-980272"
+  },
+  "model": {
+    "load_time_s": 5.14,
+    "rss_mb": 970.0,
+    "base_state_init_s": 0.253,
+    "crystal_layer": 30,
+    "window_size": 512
+  },
+  "append": {
+    "total_skills": 10,
+    "total_tokens": 5011,
+    "total_windows": 15,
+    "total_entries": 1779,
+    "total_time_s": 348.34,
+    "avg_time_per_skill_s": 34.83,
+    "tokens_per_second": 14.0,
+    "skills": [
+      {
+        "name": "weather_api",
+        "tokens": 331,
+        "windows": 1,
+        "entries": 187,
+        "time_s": 87.242,
+        "rss_delta_mb": 7180.2,
+        "metal_peak_mb": 11253.0
+      },
+      {
+        "name": "sql_query",
+        "tokens": 383,
+        "windows": 1,
+        "entries": 189,
+        "time_s": 47.647,
+        "rss_delta_mb": 27.1,
+        "metal_peak_mb": 11289.0
+      },
+      {
+        "name": "image_generation",
+        "tokens": 442,
+        "windows": 1,
+        "entries": 194,
+        "time_s": 25.023,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11335.0
+      },
+      {
+        "name": "calendar",
+        "tokens": 462,
+        "windows": 1,
+        "entries": 177,
+        "time_s": 25.757,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11345.0
+      },
+      {
+        "name": "file_converter",
+        "tokens": 515,
+        "windows": 2,
+        "entries": 173,
+        "time_s": 25.747,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11357.0
+      },
+      {
+        "name": "git_operations",
+        "tokens": 485,
+        "windows": 1,
+        "entries": 163,
+        "time_s": 25.095,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11361.0
+      },
+      {
+        "name": "email_sender",
+        "tokens": 551,
+        "windows": 2,
+        "entries": 184,
+        "time_s": 26.361,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11357.0
+      },
+      {
+        "name": "notification_service",
+        "tokens": 567,
+        "windows": 2,
+        "entries": 176,
+        "time_s": 27.61,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11357.0
+      },
+      {
+        "name": "data_visualization",
+        "tokens": 625,
+        "windows": 2,
+        "entries": 171,
+        "time_s": 28.231,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11357.0
+      },
+      {
+        "name": "deployment_pipeline",
+        "tokens": 650,
+        "windows": 2,
+        "entries": 165,
+        "time_s": 29.628,
+        "rss_delta_mb": 0.0,
+        "metal_peak_mb": 11357.0
+      }
+    ]
+  },
+  "routing": {
+    "accuracy": 70.0,
+    "correct": 7,
+    "total": 10,
+    "by_difficulty": {
+      "easy": {
+        "correct": 5,
+        "total": 6
+      },
+      "medium": {
+        "correct": 1,
+        "total": 2
+      },
+      "hard": {
+        "correct": 1,
+        "total": 2
+      }
+    },
+    "avg_query_ms": 6391.0,
+    "avg_expansion_ms": 0.0,
+    "avg_route_ms": 641.0,
+    "avg_prefill_ms": 1729.0,
+    "avg_generate_ms": 4012.0,
+    "queries": [
+      {
+        "query": "What's the temperature in Tokyo right now?",
+        "expected": "weather_api",
+        "got": "weather_api",
+        "correct": true,
+        "difficulty": "easy",
+        "windows": [
+          0,
+          3,
+          10
+        ],
+        "expansion_ms": 0.0,
+        "route_ms": 2888.9,
+        "prefill_ms": 4958.4,
+        "generate_ms": 3939.6,
+        "total_ms": 11804.6,
+        "output_snippet": "```tool_code\nweather = get_weather(city=\"Tokyo\")\nprint(weather)\n```"
+      },
+      {
+        "query": "Show me all users who signed up last week from the database",
+        "expected": "sql_query",
+        "got": "sql_query",
+        "correct": true,
+        "difficulty": "easy",
+        "windows": [
+          1,
+          3,
+          2
+        ],
+        "expansion_ms": 0.0,
+        "route_ms": 1323.0,
+        "prefill_ms": 1735.5,
+        "generate_ms": 3944.3,
+        "total_ms": 7034.6,
+        "output_snippet": "```python\nimport os\nimport logging\nimport json\nimport hashlib\n\nfrom asyncpg import create_pool\n\nlogger = logging.getLogger(__name__)\n\nDATABASE_URL = os.environ.get(\"DATABASE_URL\")\n\nif not DATABASE_URL"
+      },
+      {
+        "query": "Generate a watercolor painting of a mountain landscape at sunrise",
+        "expected": "image_generation",
+        "got": "image_generation",
+        "correct": true,
+        "difficulty": "easy",
+        "windows": [
+          2,
+          12,
+          11
+        ],
+        "expansion_ms": 0.0,
+        "route_ms": 277.6,
+        "prefill_ms": 1800.5,
+        "generate_ms": 4067.8,
+        "total_ms": 6149.8,
+        "output_snippet": "```python\nimport uuid\nfrom diffusers import StableDiffusionXLProcessor, StableDiffusionXLPipeline\nimport torch\nimport time\n\ndef generate_image(prompt, negative_prompt=\"blurry, low quality, distorted\","
+      },
+      {
+        "query": "Schedule a meeting with the design team next Thursday at 2pm",
+        "expected": "calendar",
+        "got": "calendar",
+        "correct": true,
+        "difficulty": "easy",
+        "windows": [
+          3,
+          2,
+          10
+        ],
+        "expansion_ms": 0.0,
+        "route_ms": 274.2,
+        "prefill_ms": 1860.1,
+        "generate_ms": 3897.8,
+        "total_ms": 6037.8,
+        "output_snippet": "Okay, let's schedule that meeting.  Here's the command to do that, incorporating the timezone information:\n\n```python\nevent = calendar_create(\n    title=\"Design Team Meeting\",\n    start=\"2024-03-21T14"
+      },
+      {
+        "query": "Convert this DOCX report to PDF with A4 page size",
+        "expected": "file_converter",
+        "got": "file_converter",
+        "correct": true,
+        "difficulty": "easy",
+        "windows": [
+          5,
+          4,
+          10
+        ],
+        "expansion_ms": 0.0,
+        "route_ms": 242.7,
+        "prefill_ms": 425.7,
+        "generate_ms": 4206.1,
+        "total_ms": 4878.7,
+        "output_snippet": "Please provide me with the DOCX report! I need the file itself to be able to convert it to PDF with A4 page size. \n\nYou can do this by:\n\n* **Uploading the file directly to our chat.** (If the platform"
+      },
+      {
+        "query": "Create a new git branch called feature/payments and switch to it",
+        "expected": "git_operations",
+        "got": "image_generation",
+        "correct": false,
+        "difficulty": "easy",
+        "windows": [
+          2,
+          12,
+          11
+        ],
+        "expansion_ms": 0.0,
+        "route_ms": 258.6,
+        "prefill_ms": 2012.2,
+        "generate_ms": 4261.0,
+        "total_ms": 6535.5,
+        "output_snippet": "Okay, I've created a new Git branch called `feature/payments` and switched to it.\n\nHere's the command I executed to do that (assuming you're using a standard Git setup):\n\n```bash\ngit checkout -b featu"
+      },
+      {
+        "query": "Send an email to the client with the monthly report PDF attached",
+        "expected": "email_sender",
+        "got": "notification_service",
+        "correct": false,
+        "difficulty": "medium",
+        "windows": [
+          10,
+          9,
+          2
+        ],
+        "expansion_ms": 0.0,
+        "route_ms": 195.3,
+        "prefill_ms": 606.6,
+        "generate_ms": 3800.2,
+        "total_ms": 4608.8,
+        "output_snippet": "Okay, here's a draft email to the client, incorporating the rate limits and attaching the monthly report PDF.  I've aimed for a professional and informative tone.\n\n**Subject: Monthly Report - [Client "
+      },
+      {
+        "query": "Create a bar chart showing revenue by month from the sales database",
+        "expected": "data_visualization",
+        "got": "data_visualization",
+        "correct": true,
+        "difficulty": "medium",
+        "windows": [
+          12,
+          11,
+          2
+        ],
+        "expansion_ms": 0.0,
+        "route_ms": 328.0,
+        "prefill_ms": 1181.0,
+        "generate_ms": 3869.0,
+        "total_ms": 5386.9,
+        "output_snippet": "```python\nimport pandas as pd\nimport plotly.express as px\n\ndef create_revenue_by_month_bar_chart(sales_data):\n    \"\"\"\n    Creates an interactive bar chart showing revenue by month from sales data.\n\n  "
+      },
+      {
+        "query": "Send a notification to the team that the deploy succeeded and include a link",
+        "expected": "notification_service",
+        "got": "image_generation",
+        "correct": true,
+        "difficulty": "hard",
+        "windows": [
+          2,
+          10,
+          9
+        ],
+        "expansion_ms": 0.0,
+        "route_ms": 291.7,
+        "prefill_ms": 1991.2,
+        "generate_ms": 4321.4,
+        "total_ms": 6607.5,
+        "output_snippet": "Okay, here's a notification message for the team, including a link, confirming the successful deployment of the Image Generation Tool:\n\nSubject: \ud83c\udf89 Image Generation Tool Deployed Successfully! \ud83c\udf89\n\nHi Te"
+      },
+      {
+        "query": "After deploying to staging, email the QA team and send a Slack alert to engineering",
+        "expected": "deployment_pipeline",
+        "got": "notification_service",
+        "correct": false,
+        "difficulty": "hard",
+        "windows": [
+          10,
+          9,
+          2
+        ],
+        "expansion_ms": 0.0,
+        "route_ms": 334.3,
+        "prefill_ms": 717.8,
+        "generate_ms": 3814.3,
+        "total_ms": 4868.2,
+        "output_snippet": "Okay, let's break down this task and create a plan with code snippets (primarily Python, as it's a common choice for automation) to achieve the desired outcome.\n\n**1. Understanding the Requirements**\n"
+      }
+    ]
+  },
+  "store": {
+    "version": 12,
+    "total_windows": 15,
+    "total_entries": 1779,
+    "idf_table_size": 1316,
+    "total_keywords": 98
+  }
+}

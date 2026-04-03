@@ -408,6 +408,42 @@ const indexHtml = `${HEAD}<title>Benchmark Timeline | RAG Experiment</title></he
     <p class="text-sm text-wsj-muted mt-2">Navigate with <kbd class="bg-gray-200 px-1.5 py-0.5 rounded text-xs font-mono">&larr;</kbd> <kbd class="bg-gray-200 px-1.5 py-0.5 rounded text-xs font-mono">&rarr;</kbd> arrow keys on individual pages</p>
   </div>
 
+  <!-- Hero comparison of skill routing methods -->
+  <h2 class="text-lg font-serif font-bold border-b border-wsj-border pb-2 mb-4">Routing Method Comparison</h2>
+  <div class="overflow-x-auto mb-10">
+    <table class="w-full text-left">
+      <thead><tr class="border-b-2 border-wsj-text">
+        <th class="py-2 px-4">Method</th>
+        <th class="py-2 px-4 text-right">Accuracy</th>
+        <th class="py-2 px-4 text-right">Wall Time<br><span class="font-normal text-wsj-muted">(user waits)</span></th>
+        <th class="py-2 px-4 text-right">Routing<br><span class="font-normal text-wsj-muted">(find skill)</span></th>
+        <th class="py-2 px-4 text-right">Generation<br><span class="font-normal text-wsj-muted">(produce answer)</span></th>
+        <th class="py-2 px-4 text-center">Model at Runtime</th>
+      </tr></thead>
+      <tbody>
+      ${runs.filter(r => r.type === "skill").map(r => {
+        const rt = r.json.routing;
+        const isOffline = r.label.includes("offline");
+        const needsModel = r.label.includes("tfidf") ? "Yes (30 tokens)" : isOffline ? "<strong class='text-wsj-green'>No</strong>" : "Yes (embed)";
+        const accColor = rt.accuracy === 100 ? "text-wsj-green font-bold" : rt.accuracy >= 80 ? "" : "text-wsj-red";
+        const routingTotal = rt.avg_expansion_ms + rt.avg_route_ms;
+        const wallSec = (rt.avg_query_ms / 1000).toFixed(1);
+        const routeSec = (routingTotal / 1000).toFixed(1);
+        const genSec = (rt.avg_generate_ms / 1000).toFixed(1);
+        return `<tr class="hover:bg-wsj-highlight">
+          <td class="py-3 px-4"><a href="${r.label}.html" class="text-wsj-accent hover:underline">${r.label.replace(/_/g, " ")}</a></td>
+          <td class="py-3 px-4 font-mono text-right ${accColor}">${rt.accuracy}%</td>
+          <td class="py-3 px-4 font-mono text-right font-bold">${wallSec}s</td>
+          <td class="py-3 px-4 font-mono text-right">${routeSec}s</td>
+          <td class="py-3 px-4 font-mono text-right">${genSec}s</td>
+          <td class="py-3 px-4 text-center text-sm">${needsModel}</td>
+        </tr>`;
+      }).join("")}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="text-lg font-serif font-bold border-b border-wsj-border pb-2 mb-4">All Runs</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     ${runs.map((r, i) => {
       if (r.type === "skill") {

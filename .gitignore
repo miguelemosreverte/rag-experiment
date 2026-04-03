@@ -17,5 +17,9 @@ chuk-lazarus/
 # Knowledge store (rebuild from source)
 apollo11_store/
 
+# Large model artifacts
+embed_matrix.npy
+*.safetensors
+
 # OS
 .DS_Store
